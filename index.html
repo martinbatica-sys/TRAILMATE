@@ -143,6 +143,23 @@ h2 em{font-style:italic;color:var(--moss)}
 .casa-img.sm1{grid-column:2;grid-row:1;height:252px}
 .casa-img.sm2{grid-column:2;grid-row:2;height:252px}
 
+/* PREPARACIÓN PRE CARRERA */
+.prep-section{background:var(--ink);padding:5rem 2.5rem}
+.prep-inner{max-width:1100px;margin:0 auto}
+.prep-section .section-label{color:var(--gold)}
+.prep-section h2{color:#fff}
+.prep-section h2 em{color:var(--gold)}
+
+/* EL DÍA DE LA CARRERA */
+.raceday-section{background:#fff;padding:5rem 2.5rem}
+.raceday-inner{max-width:1100px;margin:0 auto}
+
+.placeholder-note{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.05em;
+  color:var(--stone);font-style:italic
+}
+.prep-section .placeholder-note{color:rgba(255,255,255,.4)}
+
 /* REFUGIO */
 .refugio-section{background:var(--ink);padding:5rem 2.5rem}
 .refugio-inner{max-width:1100px;margin:0 auto}
@@ -245,7 +262,7 @@ footer{
   .mosaic{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
   .m-big{grid-column:1;grid-row:auto;height:240px}
   .m-1,.m-2,.m-3{grid-column:1;grid-row:auto;height:200px}
-  .casa-section,.refugio-section{padding:3.5rem 1.2rem}
+  .casa-section,.refugio-section,.prep-section,.raceday-section{padding:3.5rem 1.2rem}
   .casa-grid{grid-template-columns:1fr;grid-template-rows:auto}
   .casa-img.big{grid-column:1;grid-row:auto;height:260px}
   .casa-img.sm1,.casa-img.sm2{grid-column:1;grid-row:auto;height:220px}
@@ -324,6 +341,48 @@ footer{
   </div>
 </section>
 
+<!-- PROGRAMA -->
+<section class="program-section" id="programa">
+  <div class="program-inner">
+    <p class="section-label">El programa día a día</p>
+    <h2>Cuatro días <em>extraordinarios</em></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-day">Día 1<br>4 Dic</div>
+        <div class="tl-content">
+          <h3>Llegada y bienvenida</h3>
+          <p>Transfer desde aeropuerto o terminal. Check-in en la casa de Arelauken. Cena de bienvenida con vista a la cordillera.</p>
+          <div class="tl-tags"><span class="tag">Transfer</span><span class="tag">Cena</span><span class="tag">Arelauken</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day">Día 2<br>5 Dic</div>
+        <div class="tl-content">
+          <h3>Preparación con los mejores</h3>
+          <p>Charla técnica con profesionales del trail. Almuerzo especial en refugio de montaña con vista al Nahuel Huapi.</p>
+          <div class="tl-tags"><span class="tag">Charla técnica</span><span class="tag">Almuerzo en refugio</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day">Día 3<br>6–7 Dic</div>
+        <div class="tl-content">
+          <h3>El Cruce de los Andes</h3>
+          <p>Transfer a la largada. Base exclusiva Trailmates en el Catedral. Llegada, celebración y cena de equipo.</p>
+          <div class="tl-tags"><span class="tag">Punto exclusivo</span><span class="tag">Carrera</span><span class="tag">Celebración</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day">Día 4<br>8 Dic</div>
+        <div class="tl-content">
+          <h3>Recuperación y cierre</h3>
+          <p>Programa de recuperación activa. Desayuno sin apuro. Transfer de salida. Hasta la próxima.</p>
+          <div class="tl-tags"><span class="tag">Recuperación</span><span class="tag">Transfer salida</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- LA CASA -->
 <div class="casa-section">
   <div class="casa-inner">
@@ -337,6 +396,24 @@ footer{
       <div class="casa-img sm1"><img src="assets/casa2.jpg" alt="Interior con lámparas y escalera" style="object-position:center top" loading="lazy" decoding="async"></div>
       <div class="casa-img sm2"><img src="assets/casa3.jpg" alt="Cerro nevado desde la casa" loading="lazy" decoding="async"></div>
     </div>
+  </div>
+</div>
+
+<!-- PREPARACIÓN PRE CARRERA -->
+<div class="prep-section" id="preparacion">
+  <div class="prep-inner">
+    <p class="section-label">Antes de largar</p>
+    <h2>Preparación <em>pre carrera</em></h2>
+    <p class="placeholder-note">— Sección en construcción —</p>
+  </div>
+</div>
+
+<!-- EL DÍA DE LA CARRERA -->
+<div class="raceday-section" id="dia-carrera">
+  <div class="raceday-inner">
+    <p class="section-label">El gran día</p>
+    <h2>El día <em>de la carrera</em></h2>
+    <p class="placeholder-note">— Sección en construcción —</p>
   </div>
 </div>
 
@@ -388,48 +465,6 @@ footer{
         <div class="include-icon">🧘</div>
         <h3>Recuperación post carrera</h3>
         <p>Programa de recuperación activa. Porque el cuerpo lo pidió y el equipo se lo merece.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRAMA -->
-<section class="program-section" id="programa">
-  <div class="program-inner">
-    <p class="section-label">El programa día a día</p>
-    <h2>Cuatro días <em>extraordinarios</em></h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-day">Día 1<br>4 Dic</div>
-        <div class="tl-content">
-          <h3>Llegada y bienvenida</h3>
-          <p>Transfer desde aeropuerto o terminal. Check-in en la casa de Arelauken. Cena de bienvenida con vista a la cordillera.</p>
-          <div class="tl-tags"><span class="tag">Transfer</span><span class="tag">Cena</span><span class="tag">Arelauken</span></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-day">Día 2<br>5 Dic</div>
-        <div class="tl-content">
-          <h3>Preparación con los mejores</h3>
-          <p>Charla técnica con profesionales del trail. Almuerzo especial en refugio de montaña con vista al Nahuel Huapi.</p>
-          <div class="tl-tags"><span class="tag">Charla técnica</span><span class="tag">Almuerzo en refugio</span></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-day">Día 3<br>6–7 Dic</div>
-        <div class="tl-content">
-          <h3>El Cruce de los Andes</h3>
-          <p>Transfer a la largada. Base exclusiva Trailmates en el Catedral. Llegada, celebración y cena de equipo.</p>
-          <div class="tl-tags"><span class="tag">Punto exclusivo</span><span class="tag">Carrera</span><span class="tag">Celebración</span></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-day">Día 4<br>8 Dic</div>
-        <div class="tl-content">
-          <h3>Recuperación y cierre</h3>
-          <p>Programa de recuperación activa. Desayuno sin apuro. Transfer de salida. Hasta la próxima.</p>
-          <div class="tl-tags"><span class="tag">Recuperación</span><span class="tag">Transfer salida</span></div>
-        </div>
       </div>
     </div>
   </div>

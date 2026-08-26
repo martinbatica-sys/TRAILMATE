@@ -86,10 +86,18 @@ nav.scrolled{background:rgba(15,26,20,.94);backdrop-filter:blur(10px)}
 /* BAND */
 .band{
   background:var(--moss);color:#fff;
-  padding:1.8rem 2.5rem;display:flex;gap:2.5rem;
-  overflow-x:auto;white-space:nowrap
+  padding:1.8rem 0;overflow:hidden;white-space:nowrap
 }
-.band::-webkit-scrollbar{display:none}
+.band-track{
+  display:inline-flex;gap:2.5rem;padding-left:2.5rem;
+  animation:band-scroll 26s linear infinite
+}
+.band:hover .band-track{animation-play-state:paused}
+@keyframes band-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .band-track{animation:none}
+  .band{overflow-x:auto}
+}
 .band-item{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
   text-transform:uppercase;color:rgba(255,255,255,.6);flex:0 0 auto
@@ -255,7 +263,8 @@ footer{
   .hero-date{font-size:.68rem;margin-bottom:1.6rem}
   .btn-primary{font-size:.7rem;padding:.9rem 1.8rem}
   .scroll-hint{display:none}
-  .band{padding:1.2rem;gap:1.2rem}
+  .band{padding:1.2rem 0}
+  .band-track{gap:1.2rem;padding-left:1.2rem}
   .band-item{font-size:.62rem}
   section{padding:3.5rem 1.2rem}
   h2{font-size:2rem}
@@ -309,12 +318,20 @@ footer{
 
 <!-- BAND -->
 <div class="band">
-  <div class="band-item"><strong>Casa privada</strong> — Arelauquen</div>
-  <div class="band-item"><strong>Todos los traslados</strong> incluidos</div>
-  <div class="band-item"><strong>Todas las comidas</strong> incluidas</div>
-  <div class="band-item"><strong>Punto exclusivo</strong> — Base Catedral</div>
-  <div class="band-item"><strong>Charla pre carrera</strong> con pros</div>
-  <div class="band-item"><strong>Recuperación</strong> post carrera</div>
+  <div class="band-track">
+    <div class="band-item"><strong>Casa privada</strong> — Arelauquen</div>
+    <div class="band-item"><strong>Todos los traslados</strong> incluidos</div>
+    <div class="band-item"><strong>Todas las comidas</strong> incluidas</div>
+    <div class="band-item"><strong>Punto exclusivo</strong> — Base Catedral</div>
+    <div class="band-item"><strong>Charla pre carrera</strong> con pros</div>
+    <div class="band-item"><strong>Recuperación</strong> post carrera</div>
+    <div class="band-item" aria-hidden="true"><strong>Casa privada</strong> — Arelauquen</div>
+    <div class="band-item" aria-hidden="true"><strong>Todos los traslados</strong> incluidos</div>
+    <div class="band-item" aria-hidden="true"><strong>Todas las comidas</strong> incluidas</div>
+    <div class="band-item" aria-hidden="true"><strong>Punto exclusivo</strong> — Base Catedral</div>
+    <div class="band-item" aria-hidden="true"><strong>Charla pre carrera</strong> con pros</div>
+    <div class="band-item" aria-hidden="true"><strong>Recuperación</strong> post carrera</div>
+  </div>
 </div>
 
 <!-- QUÉ ES -->

@@ -146,13 +146,6 @@ h2 em{font-style:italic;color:var(--moss)}
 .day-section.light .day-copy{color:#555}
 .day-section.dark .day-copy{color:rgba(255,255,255,.7)}
 
-.day-list{list-style:none;margin:1.5rem 0 0;display:flex;flex-direction:column;gap:.9rem;max-width:620px}
-.day-list li{font-size:1rem;font-weight:300;line-height:1.6;padding-left:1.4rem;position:relative}
-.day-list li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--moss)}
-.day-section.light .day-list li{color:#444}
-.day-section.dark .day-list li{color:rgba(255,255,255,.8)}
-.day-section.dark .day-list li::before{background:var(--gold)}
-
 .day-split{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;margin-top:2rem}
 .day-visual{border-radius:2px;overflow:hidden;height:460px;background:var(--ice)}
 .day-visual img{display:block;width:100%;height:100%;object-fit:cover}
@@ -357,11 +350,11 @@ footer{
   <div class="day-inner">
     <p class="section-label">Día 1 — 4 Dic</p>
     <h2>Llegada y <em>bienvenida</em></h2>
-    <ul class="day-list">
-      <li>Almuerzo de bienvenida.</li>
-      <li>Por la tarde, activación + masterclass con un trail runner experimentado.</li>
-      <li>Cena de carga de carbohidratos, pre carrera.</li>
-    </ul>
+    <div class="sched-block">
+      <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo de bienvenida</span></div>
+      <div class="sched-row"><span class="sched-time">16:00</span><span>Activación + Masterclass</span></div>
+      <div class="sched-row"><span class="sched-time">20:00</span><span>Cena carga de carbohidratos</span></div>
+    </div>
     <div class="day-video-full">
       <video autoplay muted loop playsinline poster="assets/dia1-video-poster.jpg">
         <source src="assets/dia1-video.mp4" type="video/mp4">

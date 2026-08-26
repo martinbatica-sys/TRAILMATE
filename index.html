@@ -44,7 +44,6 @@ nav.scrolled{background:rgba(15,26,20,.94);backdrop-filter:blur(10px)}
   object-fit:cover;object-position:center;
   filter:brightness(.48)
 }
-.hero-img{display:none}
 .hero-content{
   position:relative;z-index:2;
   padding:0 2.5rem 5.5rem;max-width:820px
@@ -244,8 +243,6 @@ footer{
   .cta-nav{font-size:.62rem;padding:.45rem .9rem}
   .hero{min-height:100svh}
   .hero-bg{object-position:center center}
-  .hero-video{display:none}
-  .hero-img{display:block}
   .hero-content{padding:0 1.2rem 4rem}
   .hero h1{font-size:2.8rem;margin-bottom:1rem}
   .hero-sub{font-size:.92rem;margin-bottom:1.2rem}
@@ -290,10 +287,9 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-  <video class="hero-bg hero-video" autoplay muted loop playsinline poster="assets/portada.jpg" preload="auto">
+  <video class="hero-bg" autoplay muted loop playsinline poster="assets/portada.jpg" preload="auto">
     <source src="assets/portada.mp4" type="video/mp4">
   </video>
-  <img class="hero-bg hero-img" src="assets/portada.jpg" alt="Corredores en la cordillera patagónica">
   <div class="hero-content">
     <h1>¿Están listos<br><em>para esta</em><br>aventura?</h1>
     <p class="hero-sub">Scrolleá para abajo y enterate.</p>

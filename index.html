@@ -150,6 +150,10 @@ h2 em{font-style:italic;color:var(--moss)}
 .day-photo-row .sq{border-radius:2px;overflow:hidden;background:var(--ice);aspect-ratio:1/1}
 .day-photo-row .sq img{display:block;width:100%;height:100%;object-fit:cover}
 
+.day-split{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:start;margin-top:2rem}
+.day-media .day-video-full{margin-top:0}
+.day-media .day-photo-row{margin-top:.75rem}
+
 .day-copy{font-size:1rem;font-weight:300;line-height:1.75;max-width:620px;margin-bottom:1.5rem}
 .day-section.light .day-copy{color:#555}
 .day-section.dark .day-copy{color:rgba(255,255,255,.7)}
@@ -256,6 +260,7 @@ footer{
   .m-big{grid-column:1;grid-row:auto;height:240px}
   .m-1,.m-2,.m-3{grid-column:1;grid-row:auto;height:200px}
   .refugio-section,.day-section{padding:3.5rem 1.2rem}
+  .day-split{grid-template-columns:1fr;gap:2rem}
   .refugio-grid{grid-template-columns:1fr}
   .refugio-img,.refugio-img.tall{height:260px}
   .grid-includes{grid-template-columns:1fr}
@@ -360,32 +365,38 @@ footer{
   <div class="day-inner">
     <p class="section-label">Día 2</p>
     <h2>Día de <em>carrera</em></h2>
-    <div class="sched-block">
-      <h3>Para corredores</h3>
-      <div class="sched-row"><span class="sched-time">05:30</span><span>Desayuno temprano</span></div>
-      <div class="sched-row"><span class="sched-time">06:00</span><span>Traslado a la carrera para corredores de Etapa día 1</span></div>
-      <div class="sched-row"><span class="sched-time">08:00</span><span>Inicio de la carrera</span></div>
-    </div>
-    <div class="sched-block">
-      <h3>Resto del grupo</h3>
-      <div class="sched-row"><span class="sched-time">10:00</span><span>Desayuno a su ritmo</span></div>
-      <div class="sched-row"><span class="sched-time">11:00</span><span>Traslado para ir a recibir a los corredores</span></div>
-    </div>
-    <div class="sched-block">
-      <h3>Todos juntos</h3>
-      <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo en spot propio, en la base del Cerro Catedral</span></div>
-      <div class="sched-row"><span class="sched-time">15:00</span><span>Regreso a la casa</span></div>
-      <div class="sched-row"><span class="sched-time">18:00</span><span>Relajación post carrera en el Hangar para los corredores del día sábado, y preparación para la carrera para los corredores del domingo</span></div>
-      <div class="sched-row"><span class="sched-time">20:00</span><span>Cena para todo el grupo con énfasis en carga de carbohidratos para los corredores del domingo</span></div>
-    </div>
-    <div class="day-video-full">
-      <video autoplay muted loop playsinline poster="assets/dia2-video-poster.jpg">
-        <source src="assets/dia2-video.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="day-photo-row cols-2">
-      <div class="sq"><img src="assets/dia2-etapa.jpg" alt="Corredores en la etapa del Cruce de los Andes" loading="lazy" decoding="async"></div>
-      <div class="sq"><img src="assets/dia2-spot-cerro.jpg" alt="Spot propio en la base del Cerro Catedral" loading="lazy" decoding="async"></div>
+    <div class="day-split">
+      <div>
+        <div class="sched-block">
+          <h3>Para corredores</h3>
+          <div class="sched-row"><span class="sched-time">05:30</span><span>Desayuno temprano</span></div>
+          <div class="sched-row"><span class="sched-time">06:00</span><span>Traslado a la carrera para corredores de Etapa día 1</span></div>
+          <div class="sched-row"><span class="sched-time">08:00</span><span>Inicio de la carrera</span></div>
+        </div>
+        <div class="sched-block">
+          <h3>Resto del grupo</h3>
+          <div class="sched-row"><span class="sched-time">10:00</span><span>Desayuno a su ritmo</span></div>
+          <div class="sched-row"><span class="sched-time">11:00</span><span>Traslado para ir a recibir a los corredores</span></div>
+        </div>
+        <div class="sched-block">
+          <h3>Todos juntos</h3>
+          <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo en spot propio, en la base del Cerro Catedral</span></div>
+          <div class="sched-row"><span class="sched-time">15:00</span><span>Regreso a la casa</span></div>
+          <div class="sched-row"><span class="sched-time">18:00</span><span>Relajación post carrera en el Hangar para los corredores del día sábado, y preparación para la carrera para los corredores del domingo</span></div>
+          <div class="sched-row"><span class="sched-time">20:00</span><span>Cena para todo el grupo con énfasis en carga de carbohidratos para los corredores del domingo</span></div>
+        </div>
+      </div>
+      <div class="day-media">
+        <div class="day-video-full">
+          <video autoplay muted loop playsinline poster="assets/dia2-video-poster.jpg">
+            <source src="assets/dia2-video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="day-photo-row cols-2">
+          <div class="sq"><img src="assets/dia2-etapa.jpg" alt="Corredores en la etapa del Cruce de los Andes" loading="lazy" decoding="async"></div>
+          <div class="sq"><img src="assets/dia2-spot-cerro.jpg" alt="Spot propio en la base del Cerro Catedral" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

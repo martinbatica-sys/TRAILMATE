@@ -127,38 +127,57 @@ h2 em{font-style:italic;color:var(--moss)}
 .m-1{grid-column:2;grid-row:1}
 .m-2{grid-column:2;grid-row:2}
 .m-3{grid-column:2;grid-row:3}
-.mosaic img,.casa-img img,.refugio-img img{
+.mosaic img,.mosaic video,.refugio-img img{
   display:block;width:100%;height:100%;object-fit:cover
 }
 
-/* CASA */
-.casa-section{background:#fff;padding:5rem 2.5rem}
-.casa-inner{max-width:1100px;margin:0 auto}
-.casa-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  grid-template-rows:auto auto;gap:1rem;margin-top:2.5rem
+/* DÍA A DÍA */
+.day-section{padding:5rem 2.5rem}
+.day-section.light{background:#fff}
+.day-section.dark{background:var(--ink)}
+.day-section.dark .section-label{color:var(--gold)}
+.day-section.dark h2{color:#fff}
+.day-section.dark h2 em{color:var(--gold)}
+.day-inner{max-width:1100px;margin:0 auto}
+
+.day-copy{font-size:1rem;font-weight:300;line-height:1.75;max-width:620px;margin-bottom:1.5rem}
+.day-section.light .day-copy{color:#555}
+.day-section.dark .day-copy{color:rgba(255,255,255,.7)}
+
+.day-list{list-style:none;margin:1.5rem 0 0;display:flex;flex-direction:column;gap:.9rem;max-width:620px}
+.day-list li{font-size:1rem;font-weight:300;line-height:1.6;padding-left:1.4rem;position:relative}
+.day-list li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--moss)}
+.day-section.light .day-list li{color:#444}
+.day-section.dark .day-list li{color:rgba(255,255,255,.8)}
+.day-section.dark .day-list li::before{background:var(--gold)}
+
+.day-split{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;margin-top:2rem}
+.day-visual{border-radius:2px;overflow:hidden;height:460px;background:var(--ice)}
+.day-visual img{display:block;width:100%;height:100%;object-fit:cover}
+
+.sched-block{margin-bottom:1.6rem}
+.sched-block h3{font-family:var(--serif);font-size:1.15rem;margin-bottom:.7rem}
+.day-section.light .sched-block h3{color:var(--ink)}
+.day-section.dark .sched-block h3{color:#fff}
+.sched-row{display:flex;gap:1rem;padding:.55rem 0;font-size:.92rem;font-weight:300;border-bottom:1px solid}
+.day-section.light .sched-row{border-color:rgba(0,0,0,.08);color:#444}
+.day-section.dark .sched-row{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
+.sched-time{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;min-width:52px;padding-top:.15rem}
+.day-section.light .sched-time{color:var(--moss)}
+.day-section.dark .sched-time{color:var(--gold)}
+.sched-highlight{
+  margin:1.4rem 0;padding:.9rem 1.1rem;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.02em;
+  border-left:3px solid
 }
-.casa-img{border-radius:2px;overflow:hidden;background:var(--ice)}
-.casa-img.big{grid-column:1;grid-row:1/3;height:520px}
-.casa-img.sm1{grid-column:2;grid-row:1;height:252px}
-.casa-img.sm2{grid-column:2;grid-row:2;height:252px}
-
-/* PREPARACIÓN PRE CARRERA */
-.prep-section{background:var(--ink);padding:5rem 2.5rem}
-.prep-inner{max-width:1100px;margin:0 auto}
-.prep-section .section-label{color:var(--gold)}
-.prep-section h2{color:#fff}
-.prep-section h2 em{color:var(--gold)}
-
-/* EL DÍA DE LA CARRERA */
-.raceday-section{background:#fff;padding:5rem 2.5rem}
-.raceday-inner{max-width:1100px;margin:0 auto}
+.day-section.light .sched-highlight{border-color:var(--moss);color:#444;background:var(--snow)}
+.day-section.dark .sched-highlight{border-color:var(--gold);color:rgba(255,255,255,.85);background:rgba(255,255,255,.05)}
 
 .placeholder-note{
   font-family:var(--mono);font-size:.8rem;letter-spacing:.05em;
   color:var(--stone);font-style:italic
 }
-.prep-section .placeholder-note{color:rgba(255,255,255,.4)}
+.day-section.dark .placeholder-note{color:rgba(255,255,255,.4)}
 
 /* REFUGIO */
 .refugio-section{background:var(--ink);padding:5rem 2.5rem}
@@ -191,21 +210,9 @@ h2 em{font-style:italic;color:var(--moss)}
 .include-item h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.6rem}
 .include-item p{font-size:.87rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
 
-/* TIMELINE */
+/* PROGRAMA (intro) */
 .program-section{background:var(--snow2)}
 .program-inner{max-width:780px;margin:0 auto}
-.timeline{margin-top:3.5rem}
-.tl-item{
-  display:grid;grid-template-columns:90px 1fr;
-  gap:2rem;margin-bottom:3.5rem;align-items:start
-}
-.tl-day{
-  font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--stone);
-  padding-top:.3rem;border-top:2px solid var(--gold)
-}
-.tl-content h3{font-family:var(--serif);font-size:1.4rem;color:var(--ink);margin-bottom:.5rem}
-.tl-content p{font-size:.9rem;font-weight:300;color:#555;line-height:1.7}
 .tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
 .tag{
   font-family:var(--mono);font-size:.6rem;letter-spacing:.07em;
@@ -262,16 +269,13 @@ footer{
   .mosaic{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
   .m-big{grid-column:1;grid-row:auto;height:240px}
   .m-1,.m-2,.m-3{grid-column:1;grid-row:auto;height:200px}
-  .casa-section,.refugio-section,.prep-section,.raceday-section{padding:3.5rem 1.2rem}
-  .casa-grid{grid-template-columns:1fr;grid-template-rows:auto}
-  .casa-img.big{grid-column:1;grid-row:auto;height:260px}
-  .casa-img.sm1,.casa-img.sm2{grid-column:1;grid-row:auto;height:220px}
+  .refugio-section,.day-section{padding:3.5rem 1.2rem}
   .refugio-grid{grid-template-columns:1fr}
   .refugio-img,.refugio-img.tall{height:260px}
   .grid-includes{grid-template-columns:1fr}
   .include-item{padding:1.6rem 1.2rem}
-  .tl-item{grid-template-columns:1fr;gap:.6rem;margin-bottom:2.5rem}
-  .tl-day{border-top:none;border-left:3px solid var(--gold);padding:.1rem 0 .1rem .7rem}
+  .day-split{grid-template-columns:1fr;gap:1.5rem}
+  .day-visual{height:260px}
   .cta-section{padding:4.5rem 1.2rem}
   .cta-section h2{font-size:2rem}
   footer{flex-direction:column;text-align:center;padding:1.5rem 1.2rem}
@@ -280,9 +284,6 @@ footer{
   .what-grid{grid-template-columns:1fr;gap:3rem}
   .mosaic{height:420px}
   .grid-includes{grid-template-columns:repeat(2,1fr)}
-  .casa-grid{grid-template-columns:1fr 1fr}
-  .casa-img.big{height:380px}
-  .casa-img.sm1,.casa-img.sm2{height:184px}
   section{padding:4.5rem 2rem}
   .hero h1{font-size:4rem}
 }
@@ -346,74 +347,76 @@ footer{
   <div class="program-inner">
     <p class="section-label">El programa día a día</p>
     <h2>Cuatro días <em>extraordinarios</em></h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-day">Día 1<br>4 Dic</div>
-        <div class="tl-content">
-          <h3>Llegada y bienvenida</h3>
-          <p>Transfer desde aeropuerto o terminal. Check-in en la casa de Arelauquen. Cena de bienvenida con vista a la cordillera.</p>
-          <div class="tl-tags"><span class="tag">Transfer</span><span class="tag">Cena</span><span class="tag">Arelauquen</span></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-day">Día 2<br>5 Dic</div>
-        <div class="tl-content">
-          <h3>Preparación con los mejores</h3>
-          <p>Charla técnica con profesionales del trail. Almuerzo especial en refugio de montaña con vista al Nahuel Huapi.</p>
-          <div class="tl-tags"><span class="tag">Charla técnica</span><span class="tag">Almuerzo en refugio</span></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-day">Día 3<br>6–7 Dic</div>
-        <div class="tl-content">
-          <h3>El Cruce de los Andes</h3>
-          <p>Transfer a la largada. Base exclusiva Trailmates en el Catedral. Llegada, celebración y cena de equipo.</p>
-          <div class="tl-tags"><span class="tag">Punto exclusivo</span><span class="tag">Carrera</span><span class="tag">Celebración</span></div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-day">Día 4<br>8 Dic</div>
-        <div class="tl-content">
-          <h3>Recuperación y cierre</h3>
-          <p>Programa de recuperación activa. Desayuno sin apuro. Transfer de salida. Hasta la próxima.</p>
-          <div class="tl-tags"><span class="tag">Recuperación</span><span class="tag">Transfer salida</span></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- LA CASA -->
-<div class="casa-section">
-  <div class="casa-inner">
-    <p class="section-label">Dónde van a estar</p>
-    <h2>La <em>casa</em></h2>
-    <p style="font-size:1rem;font-weight:300;color:#555;line-height:1.75;max-width:540px">
-      Casa privada en Arelauquen — piedra, madera, ventanales del piso al techo y el Cerro Catedral en primer plano.
-    </p>
-    <div class="casa-grid">
-      <div class="casa-img big"><img src="assets/casa1.jpg" alt="Ventanal de la casa con vista a la montaña" loading="lazy" decoding="async"></div>
-      <div class="casa-img sm1"><img src="assets/casa2.jpg" alt="Interior con lámparas y escalera" style="object-position:center top" loading="lazy" decoding="async"></div>
-      <div class="casa-img sm2"><img src="assets/casa3.jpg" alt="Cerro nevado desde la casa" loading="lazy" decoding="async"></div>
+<!-- DÍA 1 -->
+<div class="day-section light" id="dia-1">
+  <div class="day-inner">
+    <p class="section-label">Día 1 — 4 Dic</p>
+    <h2>Llegada y <em>bienvenida</em></h2>
+    <ul class="day-list">
+      <li>Almuerzo de bienvenida.</li>
+      <li>Por la tarde, activación + masterclass con un trail runner experimentado.</li>
+      <li>Cena de carga de carbohidratos, pre carrera.</li>
+    </ul>
+    <div class="mosaic" style="margin-top:2.5rem">
+      <div class="m-big">
+        <video autoplay muted loop playsinline poster="assets/dia1-casa-poster.jpg">
+          <source src="assets/dia1-casa.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="m-1"><img src="assets/casa1.jpg" alt="Ventanal de la casa con vista a la montaña" loading="lazy" decoding="async"></div>
+      <div class="m-2"><img src="assets/casa2.jpg" alt="Interior de la casa en Arelauquen" loading="lazy" decoding="async"></div>
+      <div class="m-3"><img src="assets/casa3.jpg" alt="Cerro nevado desde la casa" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </div>
 
-<!-- PREPARACIÓN PRE CARRERA -->
-<div class="prep-section" id="preparacion">
-  <div class="prep-inner">
-    <p class="section-label">Antes de largar</p>
-    <h2>Preparación <em>pre carrera</em></h2>
-    <p class="placeholder-note">— Sección en construcción —</p>
+<!-- DÍA 2 -->
+<div class="day-section dark" id="dia-2">
+  <div class="day-inner">
+    <p class="section-label">Día 2 — 5 Dic</p>
+    <h2>Día de <em>carrera</em></h2>
+    <div class="day-split">
+      <div>
+        <div class="sched-block">
+          <h3>Para corredores — sábado</h3>
+          <div class="sched-row"><span class="sched-time">05:30</span><span>Desayuno temprano</span></div>
+          <div class="sched-row"><span class="sched-time">06:00</span><span>Traslado a la carrera para corredores de Etapa día 1</span></div>
+        </div>
+        <div class="sched-block">
+          <h3>Para corredores — domingo</h3>
+          <div class="sched-row"><span class="sched-time">10:00</span><span>Desayuno a su ritmo</span></div>
+          <div class="sched-row"><span class="sched-time">11:00</span><span>Traslado para ir a recibir</span></div>
+        </div>
+        <div class="sched-highlight">🍽️ Almuerzo en spot propio, en la base del Cerro Catedral</div>
+        <div class="sched-row"><span class="sched-time">15:00</span><span>Regreso a la casa</span></div>
+      </div>
+      <div class="day-visual"><img src="assets/spot_cerro.jpg" alt="Almuerzo en el spot propio, base del Cerro Catedral" loading="lazy" decoding="async"></div>
+    </div>
   </div>
 </div>
 
-<!-- EL DÍA DE LA CARRERA -->
-<div class="raceday-section" id="dia-carrera">
-  <div class="raceday-inner">
-    <p class="section-label">El gran día</p>
-    <h2>El día <em>de la carrera</em></h2>
-    <p class="placeholder-note">— Sección en construcción —</p>
+<!-- DÍA 3 -->
+<div class="day-section light" id="dia-3">
+  <div class="day-inner">
+    <p class="section-label">Día 3 — 6–7 Dic</p>
+    <h2>El <em>Cruce de los Andes</em></h2>
+    <p class="day-copy">Transfer a la largada. Base exclusiva Trailmates en el Catedral. Llegada, celebración y cena de equipo.</p>
+    <div class="tl-tags"><span class="tag">Punto exclusivo</span><span class="tag">Carrera</span><span class="tag">Celebración</span></div>
+    <p class="placeholder-note" style="margin-top:2rem">— Fotos y detalle pendientes —</p>
+  </div>
+</div>
+
+<!-- DÍA 4 -->
+<div class="day-section dark" id="dia-4">
+  <div class="day-inner">
+    <p class="section-label">Día 4 — 8 Dic</p>
+    <h2>Recuperación y <em>cierre</em></h2>
+    <p class="day-copy">Programa de recuperación activa. Desayuno sin apuro. Transfer de salida. Hasta la próxima.</p>
+    <div class="tl-tags"><span class="tag">Recuperación</span><span class="tag">Transfer salida</span></div>
+    <p class="placeholder-note" style="margin-top:2rem">— Fotos y detalle pendientes —</p>
   </div>
 </div>
 

@@ -118,21 +118,15 @@ h2 em{font-style:italic;color:var(--moss)}
   display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center
 }
 .what-text p{font-size:1rem;font-weight:300;line-height:1.8;color:#444;margin-bottom:1rem}
-.mosaic{position:relative;height:520px}
-.m-big{
-  position:absolute;top:0;left:0;width:60%;height:58%;
-  border-radius:2px;box-shadow:0 20px 60px rgba(0,0,0,.15);
-  overflow:hidden;background:var(--ice)
+.mosaic{
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);
+  gap:1rem;height:520px
 }
-.m-1,.m-2,.m-3{
-  position:absolute;
-  border-radius:2px;border:5px solid var(--snow);
-  box-shadow:0 12px 40px rgba(0,0,0,.2);
-  overflow:hidden;background:var(--ice)
-}
-.m-1{top:0;right:0;width:36%;height:48%}
-.m-2{bottom:0;right:0;width:36%;height:48%}
-.m-3{top:46%;left:8%;width:34%;height:38%}
+.m-big,.m-1,.m-2,.m-3{border-radius:2px;overflow:hidden;background:var(--ice)}
+.m-big{grid-column:1;grid-row:1/4}
+.m-1{grid-column:2;grid-row:1}
+.m-2{grid-column:2;grid-row:2}
+.m-3{grid-column:2;grid-row:3}
 .mosaic img,.casa-img img,.refugio-img img{
   display:block;width:100%;height:100%;object-fit:cover
 }
@@ -248,7 +242,9 @@ footer{
   section{padding:3.5rem 1.2rem}
   h2{font-size:2rem}
   .what-grid{grid-template-columns:1fr;gap:2rem}
-  .mosaic{height:340px}
+  .mosaic{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
+  .m-big{grid-column:1;grid-row:auto;height:240px}
+  .m-1,.m-2,.m-3{grid-column:1;grid-row:auto;height:200px}
   .casa-section,.refugio-section{padding:3.5rem 1.2rem}
   .casa-grid{grid-template-columns:1fr;grid-template-rows:auto}
   .casa-img.big{grid-column:1;grid-row:auto;height:260px}

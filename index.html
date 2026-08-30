@@ -165,13 +165,17 @@ h2 em{font-style:italic;color:var(--moss)}
 .placeholder-media{display:flex;align-items:center;justify-content:center}
 
 /* VER MÁS FOTOS + GALERÍA */
+.day-split-anchored{align-items:stretch}
+.day-left{display:flex;flex-direction:column}
 .ver-mas-fotos{
-  display:inline-flex;align-items:center;gap:.6rem;margin-top:2.2rem;
+  display:inline-flex;align-items:center;gap:.6rem;
+  align-self:flex-start;margin-top:2.2rem;
   background:none;cursor:pointer;
   font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink);border:1px solid var(--ink);padding:.85rem 1.6rem;
   transition:all .2s
 }
+.day-left .ver-mas-fotos{margin-top:auto}
 .ver-mas-fotos:hover{background:var(--ink);color:var(--snow)}
 .day-section.dark .ver-mas-fotos{color:#fff;border-color:rgba(255,255,255,.5)}
 .day-section.dark .ver-mas-fotos:hover{background:#fff;color:var(--ink)}
@@ -236,7 +240,8 @@ h2 em{font-style:italic;color:var(--moss)}
   .gallery-modal-title{font-size:1.05rem}
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;padding:1.2rem 1.2rem 3rem}
   .lightbox-nav{font-size:2rem;padding:.4rem .6rem}
-  .ver-mas-fotos{width:100%;justify-content:center;margin-top:1.8rem}
+  .day-split-anchored{align-items:start}
+  .ver-mas-fotos,.day-left .ver-mas-fotos{width:100%;justify-content:center;margin-top:1.8rem;align-self:stretch}
 }
 
 /* INCLUDES */
@@ -382,8 +387,8 @@ footer{
   <div class="day-inner">
     <p class="section-label">Día 1</p>
     <h2>Llegada y <em>bienvenida</em></h2>
-    <div class="day-split">
-      <div>
+    <div class="day-split day-split-anchored">
+      <div class="day-left">
         <div class="sched-block">
           <div class="sched-row"><span class="sched-time">A combinar</span><span>Traslado Aeropuerto a Arelauquen</span></div>
           <div class="sched-row"><span class="sched-time">13:00</span><span>Check In + Brunch de Bienvenida</span></div>
@@ -391,6 +396,9 @@ footer{
           <div class="sched-row"><span class="sched-time">17:00</span><span>Activación en la naturaleza</span></div>
           <div class="sched-row"><span class="sched-time">20:00</span><span>Primera cena grupal. Énfasis en carga de carbohidratos para corredores del sábado</span></div>
         </div>
+        <button class="ver-mas-fotos" type="button" onclick="openGallery()">
+          <span>Ver más fotos</span>
+        </button>
       </div>
       <div class="day-media">
         <div class="day-video-full">
@@ -405,9 +413,6 @@ footer{
         </div>
       </div>
     </div>
-    <button class="ver-mas-fotos" type="button" onclick="openGallery()">
-      <span>Ver más fotos</span>
-    </button>
   </div>
 </div>
 

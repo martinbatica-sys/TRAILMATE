@@ -613,11 +613,11 @@ footer{
     nav.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Galería "La casa & el barrio" — fotos La Maison 04 a 28
-  const galleryPhotos = [];
-  for (let i = 4; i <= 28; i++) {
-    galleryPhotos.push(`assets/la-maison-${String(i).padStart(2, '0')}.jpg`);
-  }
+  // Galería "La casa & el barrio" — La Maison 01, 04 a 28 y 29
+  const galleryPhotoNumbers = [1];
+  for (let i = 4; i <= 28; i++) galleryPhotoNumbers.push(i);
+  galleryPhotoNumbers.push(29);
+  const galleryPhotos = galleryPhotoNumbers.map(i => `assets/la-maison-${String(i).padStart(2, '0')}.jpg`);
 
   const galleryModal = document.getElementById('galeria-casa');
   const galleryGrid = document.getElementById('gallery-grid');

@@ -197,19 +197,36 @@ h2 em{font-style:italic;color:var(--moss)}
   width:2.2rem;height:2.2rem;font-size:1rem;cursor:pointer;transition:all .2s
 }
 .gallery-close:hover{background:var(--ink);color:var(--snow)}
-.gallery-grid{
-  max-width:1100px;margin:0 auto;padding:2rem 2.5rem 4rem;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem
+
+.gallery-nav{
+  max-width:1100px;margin:0 auto;padding:1.6rem 2.5rem 0;
+  display:flex;gap:1.2rem;overflow-x:auto
 }
-.gallery-grid-item{
-  border-radius:2px;overflow:hidden;background:var(--ice);cursor:pointer;
-  aspect-ratio:1/1
+.gallery-nav-item{
+  flex:0 0 auto;width:150px;background:none;border:none;padding:0;
+  cursor:pointer;text-align:left;font-family:var(--sans)
 }
-.gallery-grid-item img{
-  display:block;width:100%;height:100%;object-fit:cover;
-  transition:transform .3s
+.gallery-nav-item .thumb{
+  border-radius:2px;overflow:hidden;background:var(--ice);
+  aspect-ratio:1/1;margin-bottom:.6rem
 }
-.gallery-grid-item:hover img{transform:scale(1.06)}
+.gallery-nav-item .thumb img{
+  display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s
+}
+.gallery-nav-item:hover .thumb img{transform:scale(1.06)}
+.gallery-nav-item .label{font-size:.82rem;color:var(--ink);line-height:1.3}
+
+.gallery-sections{max-width:1100px;margin:0 auto;padding:2.6rem 2.5rem 4rem}
+.gallery-section{margin-bottom:3rem;scroll-margin-top:1.5rem}
+.gallery-section:last-child{margin-bottom:0}
+.gallery-section h3{font-family:var(--serif);font-size:1.5rem;color:var(--ink);margin-bottom:1rem}
+.cat-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cat-photos .tile{border-radius:2px;overflow:hidden;background:var(--ice);cursor:pointer;aspect-ratio:4/3}
+.cat-photos .tile img{
+  display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s
+}
+.cat-photos .tile:hover img{transform:scale(1.05)}
+.cat-photos .tile.lg{grid-column:1/-1;aspect-ratio:20/9}
 
 .lightbox{
   position:fixed;inset:0;z-index:300;background:rgba(15,26,20,.97);
@@ -238,7 +255,11 @@ h2 em{font-style:italic;color:var(--moss)}
 @media(max-width:640px){
   .gallery-modal-header{padding:1.1rem 1.2rem}
   .gallery-modal-title{font-size:1.05rem}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;padding:1.2rem 1.2rem 3rem}
+  .gallery-nav{padding:1.2rem 1.2rem 0;gap:.8rem}
+  .gallery-nav-item{width:110px}
+  .gallery-sections{padding:1.6rem 1.2rem 3rem}
+  .gallery-section h3{font-size:1.25rem}
+  .cat-photos{gap:.6rem}
   .lightbox-nav{font-size:2rem;padding:.4rem .6rem}
   .day-split-anchored{align-items:start}
   .ver-mas-fotos,.day-left .ver-mas-fotos{width:100%;justify-content:center;margin-top:1.8rem;align-self:stretch}
@@ -423,7 +444,8 @@ footer{
       <span class="gallery-modal-title">La casa &amp; el barrio — Arelauquen</span>
       <button class="gallery-close" type="button" aria-label="Cerrar galería" onclick="closeGallery()">✕</button>
     </div>
-    <div class="gallery-grid" id="gallery-grid"></div>
+    <div class="gallery-nav" id="gallery-nav"></div>
+    <div class="gallery-sections" id="gallery-sections"></div>
   </div>
 </div>
 
@@ -613,25 +635,67 @@ footer{
     nav.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Galería "La casa & el barrio" — La Maison 01, 04 a 28 y 29
-  const galleryPhotoNumbers = [1];
-  for (let i = 4; i <= 28; i++) galleryPhotoNumbers.push(i);
-  galleryPhotoNumbers.push(29);
-  const galleryPhotos = galleryPhotoNumbers.map(i => `assets/la-maison-${String(i).padStart(2, '0')}.jpg`);
+  // Galería "La casa & el barrio" — recorrido por ambientes, estilo Airbnb
+  const galleryCategories = [
+    { name: 'Vistas generales', photos: [1, 29, 26] },
+    { name: 'Living comedor', photos: [3, 8, 7, 6, 4, 30] },
+    { name: 'Cocina comedor', photos: [31, 9, 10, 11, 33] },
+    { name: '1ra habitación master', photos: [13, 34, 15, 16] },
+    { name: '2da habitación master', photos: [19, 36, 37] },
+    { name: '1ra habitación auxiliar', photos: [17, 18, 35] },
+    { name: '2da habitación auxiliar', photos: [38, 35, 39] },
+    { name: '3ra habitación auxiliar', photos: [41] }
+  ];
+  const photoSrc = (n) => `assets/la-maison-${String(n).padStart(2, '0')}.jpg`;
+  const slugify = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-');
 
+  // Tile size pattern per category: groups of [sm, sm, lg], with a clean tail
+  function tileSizes(n) {
+    const full = Math.floor(n / 3) * 3;
+    const rem = n - full;
+    const sizes = [];
+    for (let i = 0; i < full; i++) sizes.push(i % 3 === 2 ? 'lg' : 'sm');
+    for (let i = 0; i < rem; i++) sizes.push(rem === 1 ? 'lg' : 'sm');
+    return sizes;
+  }
+
+  const galleryPhotos = []; // flat list of image srcs, in tour order, for the lightbox
   const galleryModal = document.getElementById('galeria-casa');
-  const galleryGrid = document.getElementById('gallery-grid');
+  const galleryNav = document.getElementById('gallery-nav');
+  const gallerySections = document.getElementById('gallery-sections');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCounter = document.getElementById('lightbox-counter');
   let currentPhoto = 0;
 
-  galleryPhotos.forEach((src, i) => {
-    const item = document.createElement('div');
-    item.className = 'gallery-grid-item';
-    item.innerHTML = `<img src="${src}" alt="La casa y el barrio en Arelauquen" loading="lazy" decoding="async">`;
-    item.addEventListener('click', () => openLightbox(i));
-    galleryGrid.appendChild(item);
+  galleryCategories.forEach((cat) => {
+    const slug = slugify(cat.name);
+    const sizes = tileSizes(cat.photos.length);
+
+    const navItem = document.createElement('button');
+    navItem.className = 'gallery-nav-item';
+    navItem.type = 'button';
+    navItem.innerHTML = `<span class="thumb"><img src="${photoSrc(cat.photos[0])}" alt="${cat.name}" loading="lazy" decoding="async"></span><span class="label">${cat.name}</span>`;
+    navItem.addEventListener('click', () => {
+      document.getElementById(`cat-${slug}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    galleryNav.appendChild(navItem);
+
+    const section = document.createElement('div');
+    section.className = 'gallery-section';
+    section.id = `cat-${slug}`;
+    const photosHtml = cat.photos.map((n, i) => {
+      const idx = galleryPhotos.length;
+      galleryPhotos.push(photoSrc(n));
+      return `<div class="tile ${sizes[i]}" data-idx="${idx}"><img src="${photoSrc(n)}" alt="${cat.name} — La casa en Arelauquen" loading="lazy" decoding="async"></div>`;
+    }).join('');
+    section.innerHTML = `<h3>${cat.name}</h3><div class="cat-photos">${photosHtml}</div>`;
+    gallerySections.appendChild(section);
+  });
+
+  gallerySections.addEventListener('click', (e) => {
+    const tile = e.target.closest('.tile');
+    if (tile) openLightbox(Number(tile.dataset.idx));
   });
 
   function openGallery() {

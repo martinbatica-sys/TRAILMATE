@@ -164,6 +164,81 @@ h2 em{font-style:italic;color:var(--moss)}
 .day-section.dark .placeholder-note{color:rgba(255,255,255,.4)}
 .placeholder-media{display:flex;align-items:center;justify-content:center}
 
+/* VER MÁS FOTOS + GALERÍA */
+.ver-mas-fotos{
+  display:inline-flex;align-items:center;gap:.6rem;margin-top:2.2rem;
+  background:none;cursor:pointer;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);border:1px solid var(--ink);padding:.85rem 1.6rem;
+  transition:all .2s
+}
+.ver-mas-fotos:hover{background:var(--ink);color:var(--snow)}
+.day-section.dark .ver-mas-fotos{color:#fff;border-color:rgba(255,255,255,.5)}
+.day-section.dark .ver-mas-fotos:hover{background:#fff;color:var(--ink)}
+
+.gallery-modal{
+  position:fixed;inset:0;z-index:200;background:var(--snow);
+  display:none;flex-direction:column;overflow:hidden
+}
+.gallery-modal.open{display:flex}
+.gallery-modal-inner{overflow-y:auto;height:100%}
+.gallery-modal-header{
+  position:sticky;top:0;z-index:2;background:var(--snow);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem 2.5rem;border-bottom:1px solid rgba(0,0,0,.08)
+}
+.gallery-modal-title{font-family:var(--serif);font-size:1.3rem;color:var(--ink)}
+.gallery-close{
+  background:none;border:1px solid var(--ink);color:var(--ink);
+  width:2.2rem;height:2.2rem;font-size:1rem;cursor:pointer;transition:all .2s
+}
+.gallery-close:hover{background:var(--ink);color:var(--snow)}
+.gallery-grid{
+  max-width:1100px;margin:0 auto;padding:2rem 2.5rem 4rem;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem
+}
+.gallery-grid-item{
+  border-radius:2px;overflow:hidden;background:var(--ice);cursor:pointer;
+  aspect-ratio:1/1
+}
+.gallery-grid-item img{
+  display:block;width:100%;height:100%;object-fit:cover;
+  transition:transform .3s
+}
+.gallery-grid-item:hover img{transform:scale(1.06)}
+
+.lightbox{
+  position:fixed;inset:0;z-index:300;background:rgba(15,26,20,.97);
+  display:none;align-items:center;justify-content:center
+}
+.lightbox.open{display:flex}
+.lightbox-img{max-width:88vw;max-height:82vh;object-fit:contain;display:block}
+.lightbox-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:none;border:1px solid rgba(255,255,255,.5);color:#fff;
+  width:2.4rem;height:2.4rem;font-size:1.05rem;cursor:pointer;transition:all .2s
+}
+.lightbox-close:hover{background:#fff;color:var(--ink)}
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:#fff;font-size:2.6rem;line-height:1;
+  cursor:pointer;padding:.5rem 1rem;opacity:.7;transition:opacity .2s
+}
+.lightbox-nav:hover{opacity:1}
+.lightbox-prev{left:.5rem}
+.lightbox-next{right:.5rem}
+.lightbox-counter{
+  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:rgba(255,255,255,.7)
+}
+@media(max-width:640px){
+  .gallery-modal-header{padding:1.1rem 1.2rem}
+  .gallery-modal-title{font-size:1.05rem}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;padding:1.2rem 1.2rem 3rem}
+  .lightbox-nav{font-size:2rem;padding:.4rem .6rem}
+  .ver-mas-fotos{width:100%;justify-content:center;margin-top:1.8rem}
+}
+
 /* INCLUDES */
 .includes-section{background:var(--ink)}
 .includes-inner{max-width:1100px;margin:0 auto}
@@ -324,13 +399,35 @@ footer{
           </video>
         </div>
         <div class="day-photo-row">
-          <div class="sq"><img src="assets/dia1-exterior.jpg" alt="Exterior de la casa en Arelauquen" loading="lazy" decoding="async"></div>
-          <div class="sq"><img src="assets/dia1-cuarto.jpg" alt="Dormitorio de la casa con vista al bosque" loading="lazy" decoding="async"></div>
-          <div class="sq"><img src="assets/dia1-living.jpg" alt="Living de la casa con chimenea" loading="lazy" decoding="async"></div>
+          <div class="sq"><img src="assets/la-maison-01.jpg" alt="La casa en Arelauquen" loading="lazy" decoding="async"></div>
+          <div class="sq"><img src="assets/la-maison-02.jpg" alt="La casa en Arelauquen" loading="lazy" decoding="async"></div>
+          <div class="sq"><img src="assets/la-maison-03.jpg" alt="La casa en Arelauquen" loading="lazy" decoding="async"></div>
         </div>
       </div>
     </div>
+    <button class="ver-mas-fotos" type="button" onclick="openGallery()">
+      <span>Ver más fotos</span>
+    </button>
   </div>
+</div>
+
+<!-- GALERÍA LA CASA & EL BARRIO -->
+<div class="gallery-modal" id="galeria-casa" role="dialog" aria-modal="true" aria-label="Galería de fotos de la casa y el barrio">
+  <div class="gallery-modal-inner">
+    <div class="gallery-modal-header">
+      <span class="gallery-modal-title">La casa &amp; el barrio — Arelauquen</span>
+      <button class="gallery-close" type="button" aria-label="Cerrar galería" onclick="closeGallery()">✕</button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lightbox-close" type="button" aria-label="Cerrar" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" type="button" aria-label="Foto anterior" onclick="navLightbox(-1)">‹</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" type="button" aria-label="Foto siguiente" onclick="navLightbox(1)">›</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
 <!-- DÍA 2 -->
@@ -509,6 +606,66 @@ footer{
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Galería "La casa & el barrio" — fotos La Maison 04 a 28
+  const galleryPhotos = [];
+  for (let i = 4; i <= 28; i++) {
+    galleryPhotos.push(`assets/la-maison-${String(i).padStart(2, '0')}.jpg`);
+  }
+
+  const galleryModal = document.getElementById('galeria-casa');
+  const galleryGrid = document.getElementById('gallery-grid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  let currentPhoto = 0;
+
+  galleryPhotos.forEach((src, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-grid-item';
+    item.innerHTML = `<img src="${src}" alt="La casa y el barrio en Arelauquen" loading="lazy" decoding="async">`;
+    item.addEventListener('click', () => openLightbox(i));
+    galleryGrid.appendChild(item);
+  });
+
+  function openGallery() {
+    galleryModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeGallery() {
+    galleryModal.classList.remove('open');
+    closeLightbox();
+    document.body.style.overflow = '';
+  }
+  function openLightbox(i) {
+    currentPhoto = i;
+    updateLightbox();
+    lightbox.classList.add('open');
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+  }
+  function navLightbox(dir) {
+    currentPhoto = (currentPhoto + dir + galleryPhotos.length) % galleryPhotos.length;
+    updateLightbox();
+  }
+  function updateLightbox() {
+    lightboxImg.src = galleryPhotos[currentPhoto];
+    lightboxCounter.textContent = `${currentPhoto + 1} / ${galleryPhotos.length}`;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') navLightbox(1);
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+    } else if (galleryModal.classList.contains('open') && e.key === 'Escape') {
+      closeGallery();
+    }
+  });
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
   });
 </script>
 </body>

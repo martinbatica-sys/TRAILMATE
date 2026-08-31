@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trailmates — El Cruce de los Andes 2026</title>
+<title>Pirka — El Cruce de los Andes 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -23,8 +23,15 @@ nav{
   padding:1.2rem 2.5rem;transition:background .3s
 }
 nav.scrolled{background:rgba(15,26,20,.94);backdrop-filter:blur(10px)}
+.nav-brand{display:flex;align-items:center;gap:.9rem}
 .logo{font-family:var(--serif);font-size:1.5rem;color:#fff;letter-spacing:.02em}
 .logo span{color:var(--gold)}
+.tagline{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  padding-left:.9rem;border-left:1px solid rgba(255,255,255,.25);
+  white-space:nowrap
+}
 .cta-nav{
   font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--gold);
@@ -356,6 +363,7 @@ footer{
 @media(max-width:640px){
   nav{padding:.9rem 1.2rem}
   .logo{font-size:1.2rem}
+  .tagline{display:none}
   .cta-nav{font-size:.62rem;padding:.45rem .9rem}
   .hero{min-height:100svh}
   .hero-bg{object-position:center center}
@@ -399,7 +407,10 @@ footer{
 <body>
 
 <nav id="nav">
-  <div class="logo">Trail<span>mates</span></div>
+  <div class="nav-brand">
+    <div class="logo">Pir<span>ka</span></div>
+    <span class="tagline">Te mostramos el camino</span>
+  </div>
   <a href="#contacto" class="cta-nav">Consultar cupo</a>
 </nav>
 
@@ -439,9 +450,9 @@ footer{
 <section>
   <div class="what-grid">
     <div class="what-text">
-      <p class="section-label">¿Qué es Trailmates?</p>
+      <p class="section-label">¿Qué es Pirka?</p>
       <h2>Somos <em>un atajo</em><br>a una experiencia inolvidable.</h2>
-      <p>Trailmates nace en Bariloche, de la mano de personas que conocen la montaña de memoria. Años de convivir con esta cordillera nos mostraron lo que no está en ninguna guía: refugios, spots y experiencias únicas.</p>
+      <p>Pirka nace en Bariloche, de la mano de personas que conocen la montaña de memoria. Años de convivir con esta cordillera nos mostraron lo que no está en ninguna guía: refugios, spots y experiencias únicas.</p>
       <p>Nuestra tarea es solucionarte el alojamiento, las comidas y los traslados. Nuestra misión es que vivas Bariloche como pocos lo conocen.</p>
     </div>
     <div class="what-visual">
@@ -672,7 +683,7 @@ footer{
             <span class="flip-front-title">Spot Exclusivo - Catedral</span>
           </div>
           <div class="flip-back">
-            <p>Espacio exclusivo Trailmates en la base durante la carrera. Tu equipo con base de operaciones propia.</p>
+            <p>Espacio exclusivo Pirka en la base durante la carrera. Tu equipo con base de operaciones propia.</p>
           </div>
         </div>
       </div>
@@ -712,9 +723,9 @@ footer{
 </section>
 
 <footer>
-  <div style="font-family:'DM Serif Display',serif;color:#fff;font-size:1.2rem">Trail<span style="color:#C9A84C">mates</span></div>
+  <div style="font-family:'DM Serif Display',serif;color:#fff;font-size:1.2rem">Pir<span style="color:#C9A84C">ka</span></div>
   <div>Bariloche, Patagonia Argentina</div>
-  <div>© 2026 Trailmates — La Etapa</div>
+  <div>© 2026 Pirka — La Etapa</div>
 </footer>
 
 <script>

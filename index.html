@@ -290,9 +290,26 @@ h2 em{font-style:italic;color:var(--moss)}
   gap:1px;background:rgba(255,255,255,.07);
   margin-top:3rem;border:1px solid rgba(255,255,255,.07)
 }
-.include-item{padding:2.5rem 2rem;background:var(--ink);transition:background .25s}
-.include-item:hover{background:#1a3028}
-.include-icon{font-size:2rem;margin-bottom:1rem}
+.include-item{min-height:240px;perspective:1200px}
+.flip-inner{
+  position:relative;width:100%;height:100%;min-height:240px;
+  transition:transform .6s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d
+}
+.include-item:hover .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{
+  position:absolute;inset:0;backface-visibility:hidden;
+  display:flex;flex-direction:column;padding:2.5rem 2rem
+}
+.flip-front{
+  align-items:center;justify-content:center;background:var(--ink)
+}
+.flip-back{
+  justify-content:center;background:#1a3028;transform:rotateY(180deg)
+}
+.include-icon{font-size:2rem}
+.flip-front .include-icon{font-size:3.2rem;margin-bottom:0}
+.flip-back .include-icon{margin-bottom:1rem}
 .include-item h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.6rem}
 .include-item p{font-size:.87rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
 
@@ -350,7 +367,9 @@ footer{
   .day-mosaic3 .big{grid-column:1;grid-row:auto;height:240px}
   .day-mosaic3 .sm{grid-column:1;grid-row:auto;height:200px}
   .grid-includes{grid-template-columns:1fr}
-  .include-item{padding:1.6rem 1.2rem}
+  .include-item{min-height:200px}
+  .flip-inner{min-height:200px}
+  .flip-front,.flip-back{padding:1.6rem 1.2rem}
   .cta-section{padding:4.5rem 1.2rem}
   .cta-section h2{font-size:2rem}
   footer{flex-direction:column;text-align:center;padding:1.5rem 1.2rem}
@@ -600,34 +619,64 @@ footer{
     <h2>Qué <em>incluye</em></h2>
     <div class="grid-includes">
       <div class="include-item">
-        <div class="include-icon">🏠</div>
-        <h3>Casa privada — Arelauquen</h3>
-        <p>Barrio cerrado exclusivo. La casa es de tu equipo los cuatro días, con todo el espacio para vivir La Etapa como se merece.</p>
+        <div class="flip-inner">
+          <div class="flip-front"><div class="include-icon">🏠</div></div>
+          <div class="flip-back">
+            <div class="include-icon">🏠</div>
+            <h3>Casa privada — Arelauquen</h3>
+            <p>Barrio cerrado exclusivo. La casa es de tu equipo los cuatro días, con todo el espacio para vivir La Etapa como se merece.</p>
+          </div>
+        </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">🚐</div>
-        <h3>Todos los traslados</h3>
-        <p>Desde que llegás hasta que te vas. Traslados desde y hacia el aeropuerto, traslados al Cerro, a la largada, al refugio y todo lo que necesites.</p>
+        <div class="flip-inner">
+          <div class="flip-front"><div class="include-icon">🚐</div></div>
+          <div class="flip-back">
+            <div class="include-icon">🚐</div>
+            <h3>Todos los traslados</h3>
+            <p>Desde que llegás hasta que te vas. Traslados desde y hacia el aeropuerto, traslados al Cerro, a la largada, al refugio y todo lo que necesites.</p>
+          </div>
+        </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">🍽️</div>
-        <h3>Todas las comidas</h3>
-        <p>Desayunos, almuerzos y cenas. Menú pensado para rendimiento, con almuerzo especial en refugio de montaña.</p>
+        <div class="flip-inner">
+          <div class="flip-front"><div class="include-icon">🍽️</div></div>
+          <div class="flip-back">
+            <div class="include-icon">🍽️</div>
+            <h3>Todas las comidas</h3>
+            <p>Desayunos, almuerzos y cenas. Menú pensado para rendimiento, con almuerzo especial en refugio de montaña.</p>
+          </div>
+        </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">⛰️</div>
-        <h3>Punto exclusivo — Catedral</h3>
-        <p>Espacio exclusivo Trailmates en la base durante la carrera. Tu equipo con base de operaciones propia.</p>
+        <div class="flip-inner">
+          <div class="flip-front"><div class="include-icon">⛰️</div></div>
+          <div class="flip-back">
+            <div class="include-icon">⛰️</div>
+            <h3>Punto exclusivo — Catedral</h3>
+            <p>Espacio exclusivo Trailmates en la base durante la carrera. Tu equipo con base de operaciones propia.</p>
+          </div>
+        </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">🏃</div>
-        <h3>Preparación pre carrera</h3>
-        <p>Charla con profesionales del trail: estrategia, nutrición y logística del recorrido antes de largar.</p>
+        <div class="flip-inner">
+          <div class="flip-front"><div class="include-icon">🏃</div></div>
+          <div class="flip-back">
+            <div class="include-icon">🏃</div>
+            <h3>Preparación pre carrera</h3>
+            <p>Charla con profesionales del trail: estrategia, nutrición y logística del recorrido antes de largar.</p>
+          </div>
+        </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">🧘</div>
-        <h3>Recuperación post carrera</h3>
-        <p>Programa de recuperación activa. Porque el cuerpo lo pidió y el equipo se lo merece.</p>
+        <div class="flip-inner">
+          <div class="flip-front"><div class="include-icon">🧘</div></div>
+          <div class="flip-back">
+            <div class="include-icon">🧘</div>
+            <h3>Recuperación post carrera</h3>
+            <p>Programa de recuperación activa. Porque el cuerpo lo pidió y el equipo se lo merece.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

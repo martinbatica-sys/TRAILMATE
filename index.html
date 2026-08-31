@@ -312,17 +312,16 @@ h2 em{font-style:italic;color:var(--moss)}
 .flip-back .include-icon{margin-bottom:1rem}
 
 .flip-front-photo{
-  padding:0;align-items:stretch;justify-content:flex-end;
+  padding:0;align-items:center;justify-content:center;
   overflow:hidden
 }
 .flip-front-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .flip-front-photo::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,0) 55%)
+  content:'';position:absolute;inset:0;background:rgba(0,0,0,.4)
 }
 .flip-front-title{
-  position:relative;z-index:1;color:#fff;
-  font-family:var(--serif);font-size:1.2rem;line-height:1.15;
+  position:relative;z-index:1;color:#fff;text-align:center;
+  font-family:var(--serif);font-size:1.2rem;line-height:1.2;
   padding:1.4rem 1.6rem
 }
 .include-item h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.6rem}
@@ -596,11 +595,11 @@ footer{
     <div class="day-split">
       <div>
         <div class="sched-block">
-          <div class="sched-row"><span class="sched-time">Libre</span><span>Desayuno</span></div>
-          <div class="sched-row"><span class="sched-time">12:00</span><span>Ascenso en 4x4 a la cumbre del Cerro Otto</span></div>
-          <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo en Refugio Arelauquen</span></div>
-          <div class="sched-row"><span class="sched-time">Tarde</span><span>Libre</span></div>
-          <div class="sched-row"><span class="sched-time">20:00</span><span>Cena y cierre de viaje</span></div>
+          <div class="sched-row"><span class="sched-time">11:00</span><span>Off-Road Otto: Ascenso en 4x4 a la cumbre</span></div>
+          <div class="sched-row"><span class="sched-time">12:00</span><span>Trekking corto a Piedra de Hamburgo</span></div>
+          <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo Refugio Arelauquen con Parrillero</span></div>
+          <div class="sched-row"><span class="sched-time">15:00</span><span>Libre: A tu ritmo</span></div>
+          <div class="sched-row"><span class="sched-time">20:00</span><span>Cena & Cierre: La gran despedida</span></div>
         </div>
       </div>
       <div class="day-media">
@@ -620,7 +619,7 @@ footer{
     <p class="section-label">Día 5</p>
     <h2>Antes de <em>irnos</em></h2>
     <div class="sched-block">
-      <div class="sched-row"><span class="sched-time">09:00</span><span>Desayuno + entrega de souvenir</span></div>
+      <div class="sched-row"><span class="sched-time">09:00</span><span>Desayuno</span></div>
       <div class="sched-row"><span class="sched-time">10:00</span><span>Check out</span></div>
       <div class="sched-row"><span class="sched-time">A combinar</span><span>Traslado al aeropuerto</span></div>
     </div>
@@ -640,8 +639,6 @@ footer{
             <span class="flip-front-title">Casa Privada - Arelauquen</span>
           </div>
           <div class="flip-back">
-            <div class="include-icon">🏠</div>
-            <h3>Casa privada — Arelauquen</h3>
             <p>Barrio cerrado exclusivo. La casa es de tu equipo los cuatro días, con todo el espacio para vivir La Etapa como se merece.</p>
           </div>
         </div>
@@ -650,8 +647,6 @@ footer{
         <div class="flip-inner">
           <div class="flip-front"><div class="include-icon">🚐</div></div>
           <div class="flip-back">
-            <div class="include-icon">🚐</div>
-            <h3>Todos los traslados</h3>
             <p>Desde que llegás hasta que te vas. Traslados desde y hacia el aeropuerto, traslados al Cerro, a la largada, al refugio y todo lo que necesites.</p>
           </div>
         </div>
@@ -660,8 +655,6 @@ footer{
         <div class="flip-inner">
           <div class="flip-front"><div class="include-icon">🍽️</div></div>
           <div class="flip-back">
-            <div class="include-icon">🍽️</div>
-            <h3>Todas las comidas</h3>
             <p>Desayunos, almuerzos y cenas. Menú pensado para rendimiento, con almuerzo especial en refugio de montaña.</p>
           </div>
         </div>
@@ -670,8 +663,6 @@ footer{
         <div class="flip-inner">
           <div class="flip-front"><div class="include-icon">⛰️</div></div>
           <div class="flip-back">
-            <div class="include-icon">⛰️</div>
-            <h3>Punto exclusivo — Catedral</h3>
             <p>Espacio exclusivo Trailmates en la base durante la carrera. Tu equipo con base de operaciones propia.</p>
           </div>
         </div>
@@ -680,8 +671,6 @@ footer{
         <div class="flip-inner">
           <div class="flip-front"><div class="include-icon">🏃</div></div>
           <div class="flip-back">
-            <div class="include-icon">🏃</div>
-            <h3>Preparación pre carrera</h3>
             <p>Charla con profesionales del trail: estrategia, nutrición y logística del recorrido antes de largar.</p>
           </div>
         </div>
@@ -690,8 +679,6 @@ footer{
         <div class="flip-inner">
           <div class="flip-front"><div class="include-icon">🧘</div></div>
           <div class="flip-back">
-            <div class="include-icon">🧘</div>
-            <h3>Recuperación post carrera</h3>
             <p>Programa de recuperación activa. Porque el cuerpo lo pidió y el equipo se lo merece.</p>
           </div>
         </div>

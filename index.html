@@ -310,6 +310,21 @@ h2 em{font-style:italic;color:var(--moss)}
 .include-icon{font-size:2rem}
 .flip-front .include-icon{font-size:3.2rem;margin-bottom:0}
 .flip-back .include-icon{margin-bottom:1rem}
+
+.flip-front-photo{
+  padding:0;align-items:stretch;justify-content:flex-end;
+  overflow:hidden
+}
+.flip-front-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.flip-front-photo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,0) 55%)
+}
+.flip-front-title{
+  position:relative;z-index:1;color:#fff;
+  font-family:var(--serif);font-size:1.2rem;line-height:1.15;
+  padding:1.4rem 1.6rem
+}
 .include-item h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.6rem}
 .include-item p{font-size:.87rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
 
@@ -620,7 +635,10 @@ footer{
     <div class="grid-includes">
       <div class="include-item">
         <div class="flip-inner">
-          <div class="flip-front"><div class="include-icon">🏠</div></div>
+          <div class="flip-front flip-front-photo">
+            <img src="assets/la-maison-29.jpg" alt="Casa Privada - Arelauquen" loading="lazy" decoding="async">
+            <span class="flip-front-title">Casa Privada - Arelauquen</span>
+          </div>
           <div class="flip-back">
             <div class="include-icon">🏠</div>
             <h3>Casa privada — Arelauquen</h3>

@@ -3,838 +3,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pirka — El Cruce de los Andes 2026</title>
+<title>Pirka — Te mostramos el camino</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;1,300&family=Source+Serif+4:ital,wght@0,400;1,400;1,500&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#0F1A14;--snow:#F6F3EE;--snow2:#EEE8DD;--moss:#46725F;
-  --stone:#8C7B6B;--gold:#C9A84C;--ice:#D6E4E0;
-  --serif:'DM Serif Display',serif;--sans:'DM Sans',sans-serif;--mono:'Space Mono',monospace;
-}
 html{scroll-behavior:smooth}
-body{background:var(--snow);color:var(--ink);font-family:var(--sans)}
+*{box-sizing:border-box}
+body{margin:0;background:#131110;color:#FAF7F2}
+a{color:#EDB8A0;text-decoration:none}
+a:hover{color:#FAF7F2}
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.2rem 2.5rem;transition:background .3s
-}
-nav.scrolled{background:rgba(15,26,20,.94);backdrop-filter:blur(10px)}
-.nav-brand{display:flex;align-items:center;gap:.9rem}
-.logo{font-family:var(--serif);font-size:1.5rem;color:#fff;letter-spacing:.02em}
-.logo span{color:var(--gold)}
-.tagline{
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.55);
-  padding-left:.9rem;border-left:1px solid rgba(255,255,255,.25);
-  white-space:nowrap
-}
-.cta-nav{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--gold);
-  border:1px solid var(--gold);padding:.5rem 1.3rem;
-  text-decoration:none;transition:all .2s
-}
-.cta-nav:hover{background:var(--gold);color:var(--ink)}
+:root{
+  --pirka-bone:#FAF7F2;
+  --pirka-salmon:#EDB8A0;
+  --pirka-earth:#62574B;
+  --pirka-ink:#131110;
+  --pirka-stone:#2C2A29;
+  --pirka-hairline:rgba(250,247,242,.45);
+  --pirka-scrim:rgba(19,17,16,.42);
+  --pirka-scrim-strong:rgba(19,17,16,.6);
 
-/* HERO */
-.hero{
-  position:relative;height:100vh;min-height:620px;background:var(--ink);
-  display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden
-}
-.hero-bg{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  filter:brightness(.48)
-}
-.hero-content{
-  position:relative;z-index:2;
-  padding:0 2.5rem clamp(1.5rem,5vh,3.5rem);max-width:820px
-}
-.hero h1{
-  font-family:var(--serif);font-size:clamp(2.2rem,min(8vw,9vh),7rem);
-  line-height:.93;color:#fff;margin-bottom:clamp(.6rem,2vh,1.4rem)
-}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{
-  font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.82);
-  max-width:480px;line-height:1.65;margin-bottom:clamp(.8rem,2vh,1.8rem)
-}
-.hero-date{
-  display:block;font-family:var(--mono);font-size:.78rem;
-  letter-spacing:.1em;color:rgba(255,255,255,.9);
-  border-left:3px solid var(--gold);padding-left:.8rem;margin-bottom:clamp(1rem,2.5vh,2.2rem)
-}
-.btn-primary{
-  display:inline-block;background:var(--gold);color:var(--ink);
-  font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;
-  text-transform:uppercase;text-decoration:none;
-  padding:1rem 2.4rem;transition:all .2s
-}
-.btn-primary:hover{background:#fff}
-.scroll-hint{
-  position:absolute;bottom:2rem;right:2.5rem;z-index:2;
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
-  color:rgba(255,255,255,.4);text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:.5rem
-}
-.scroll-hint::after{
-  content:'';display:block;width:1px;height:42px;
-  background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);
-  animation:pulse 2s ease-in-out infinite
-}
-@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  --font-sans:"Source Sans 3","Source Sans Pro",Helvetica,Arial,sans-serif;
+  --font-serif:"Source Serif 4","Source Serif Pro",Georgia,serif;
+  --font-mono:"Source Code Pro",ui-monospace,Menlo,monospace;
 
-/* BAND */
-.band{
-  background:var(--moss);color:#fff;
-  padding:1.8rem 0;overflow:hidden;white-space:nowrap
+  --weight-wordmark:200;
+  --type-label:22px;
+  --type-pill:26px;
+  --tracking-label:.12em;
+  --tracking-pill:.08em;
+  --radius-pill:999px;
+  --pill-h-lg:88px;
+  --pill-h-sm:58px;
 }
-.band-track{
-  display:inline-flex;gap:2.5rem;padding-left:2.5rem;
-  animation:band-scroll 26s linear infinite
-}
-.band:hover .band-track{animation-play-state:paused}
-@keyframes band-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){
-  .band-track{animation:none}
-  .band{overflow-x:auto}
-}
-.band-item{
-  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.6);flex:0 0 auto
-}
-.band-item strong{color:#fff}
 
-/* SECTIONS */
-section{padding:6rem 2.5rem}
-.section-label{
-  font-family:var(--mono);font-size:.65rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--stone);margin-bottom:1rem
-}
-h2{
-  font-family:var(--serif);font-size:clamp(1.7rem,2.6vw,2.6rem);
-  line-height:1.05;color:var(--ink);margin-bottom:1.5rem
-}
-h2 em{font-style:italic;color:var(--moss)}
+.pk-wordmark{display:inline-flex;align-items:baseline;line-height:1;color:var(--pirka-bone)}
+.pk-wordmark__pir{font:var(--weight-wordmark) var(--type-wordmark)/1 var(--font-sans);letter-spacing:.02em}
+.pk-wordmark__ka{font:italic 500 calc(var(--type-wordmark)*1.12)/1 var(--font-serif);margin-left:-.02em}
+.pk-pill{display:inline-flex;align-items:center;justify-content:center;height:var(--pill-h-lg);padding:0 40px;border-radius:var(--radius-pill);background:var(--pirka-earth);color:var(--pirka-bone);font:400 var(--type-pill)/1 var(--font-mono);letter-spacing:var(--tracking-pill);text-transform:uppercase;white-space:nowrap}
+.pk-pill--sm{height:var(--pill-h-sm);padding:0 24px;font-size:var(--type-label)}
 
-/* QUÉ ES */
-.what-grid{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:.8fr 1.2fr;gap:2.5rem;align-items:center
-}
-.what-text p{font-size:.92rem;font-weight:300;line-height:1.75;color:#444;margin-bottom:1rem}
+.reveal{opacity:0;transform:translateY(100px);transition:opacity 1s cubic-bezier(0.165,0.84,0.44,1),transform 1s cubic-bezier(0.165,0.84,0.44,1)}
+.reveal.is-in{opacity:1;transform:none}
+.reveal.no-anim{transition:none}
+@media (max-width:768px){.reveal{transform:translateY(60px)}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-/* DÍA A DÍA */
-.day-section{padding:5rem 2.5rem}
-.day-section.light{background:#fff}
-.day-section.dark{background:var(--ink)}
-.day-section .section-label{font-size:14px}
-.day-section.dark .section-label{color:var(--gold)}
-.day-section.dark h2{color:#fff}
-.day-section.dark h2 em{color:var(--gold)}
-.day-inner{max-width:1100px;margin:0 auto}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,5vw,72px);background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairline)}
+.pk-navlinks{display:flex;gap:28px;overflow-x:auto;font:400 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
 
-.day-video-full{border-radius:2px;overflow:hidden;background:var(--ice);aspect-ratio:21/8;margin-top:2.5rem}
-.day-video-full video,.day-video-full img{display:block;width:100%;height:100%;object-fit:cover}
-.day-photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
-.day-photo-row.cols-2{grid-template-columns:repeat(2,1fr)}
-.day-photo-row .sq{border-radius:2px;overflow:hidden;background:var(--ice);aspect-ratio:1/1}
-.day-photo-row .sq img{display:block;width:100%;height:100%;object-fit:cover}
-
-.day-split{display:grid;grid-template-columns:.8fr 1.2fr;gap:2.5rem;align-items:start;margin-top:2rem}
-.day-media .day-video-full{margin-top:0}
-.day-media .day-photo-row{margin-top:.75rem}
-
-.day-split-fill{align-items:stretch}
-.day-split-fill .day-media{display:flex;flex-direction:column}
-.day-split-fill .day-media .day-video-full{flex:0 0 auto}
-.day-split-fill .day-media .day-photo-row{flex:1 1 0;min-height:0}
-.day-split-fill .day-photo-row .sq{aspect-ratio:auto}
-
-.day-mosaic3{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1rem;height:470px}
-.day-mosaic3 .big{grid-column:1;grid-row:1/3}
-.day-mosaic3 .big,.day-mosaic3 .sm{border-radius:2px;overflow:hidden;background:var(--ice)}
-.day-mosaic3 img{display:block;width:100%;height:100%;object-fit:cover}
-
-.sched-block{margin-bottom:1.6rem}
-.sched-block h3{font-family:var(--serif);font-size:1.15rem;margin-bottom:.7rem}
-.day-section.light .sched-block h3{color:var(--ink)}
-.day-section.dark .sched-block h3{color:#fff}
-.sched-row{display:flex;gap:1rem;padding:.55rem 0;font-size:.92rem;font-weight:300;border-bottom:1px solid}
-.day-section.light .sched-row{border-color:rgba(0,0,0,.08);color:#444}
-.day-section.dark .sched-row{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
-.sched-time{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;min-width:52px;padding-top:.15rem}
-.day-section.light .sched-time{color:var(--moss)}
-.day-section.dark .sched-time{color:var(--gold)}
-.placeholder-note{
-  font-family:var(--mono);font-size:.8rem;letter-spacing:.05em;
-  color:var(--stone);font-style:italic
-}
-.day-section.dark .placeholder-note{color:rgba(255,255,255,.4)}
-.placeholder-media{display:flex;align-items:center;justify-content:center}
-
-/* VER MÁS FOTOS + GALERÍA */
-.day-split-anchored{align-items:stretch}
-.day-left{display:flex;flex-direction:column}
-.ver-mas-fotos{
-  display:inline-flex;align-items:center;gap:.6rem;
-  align-self:flex-start;margin-top:2.2rem;
-  background:none;cursor:pointer;
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);border:1px solid var(--ink);padding:.85rem 1.6rem;
-  transition:all .2s
-}
-.day-left .ver-mas-fotos{margin-top:auto}
-.ver-mas-fotos:hover{background:var(--ink);color:var(--snow)}
-.day-section.dark .ver-mas-fotos{color:#fff;border-color:rgba(255,255,255,.5)}
-.day-section.dark .ver-mas-fotos:hover{background:#fff;color:var(--ink)}
-
-.gallery-modal{
-  position:fixed;inset:0;z-index:200;background:var(--snow);
-  display:none;flex-direction:column;overflow:hidden
-}
-.gallery-modal.open{display:flex}
-.gallery-modal-inner{overflow-y:auto;height:100%}
-.gallery-modal-header{
-  position:sticky;top:0;z-index:2;background:var(--snow);
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.4rem 2.5rem;border-bottom:1px solid rgba(0,0,0,.08)
-}
-.gallery-modal-title{font-family:var(--serif);font-size:1.3rem;color:var(--ink)}
-.gallery-close{
-  background:none;border:1px solid var(--ink);color:var(--ink);
-  width:2.2rem;height:2.2rem;font-size:1rem;cursor:pointer;transition:all .2s
-}
-.gallery-close:hover{background:var(--ink);color:var(--snow)}
-
-.gallery-nav-title{
-  max-width:1100px;margin:0 auto;padding:2rem 2.5rem 0;
-  font-family:var(--serif);font-size:1.7rem;color:var(--ink)
-}
-.gallery-nav{
-  max-width:1100px;margin:0 auto;padding:1.4rem 2.5rem 0;
-  display:flex;gap:1.2rem;overflow-x:auto
-}
-.gallery-nav-item{
-  flex:0 0 auto;width:150px;background:none;border:none;padding:0;
-  cursor:pointer;text-align:left;font-family:var(--sans);
-  display:flex;flex-direction:column
-}
-.gallery-nav-item .thumb{
-  display:block;width:100%;
-  border-radius:2px;overflow:hidden;background:var(--ice);
-  aspect-ratio:1/1;margin-bottom:.6rem
-}
-.gallery-nav-item .thumb img{
-  display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s
-}
-.gallery-nav-item:hover .thumb img{transform:scale(1.06)}
-.gallery-nav-item .label{font-size:.82rem;color:var(--ink);line-height:1.3}
-
-.gallery-sections{max-width:1100px;margin:0 auto;padding:2.6rem 2.5rem 4rem}
-.gallery-section{margin-bottom:3rem;scroll-margin-top:1.5rem}
-.gallery-section:last-child{margin-bottom:0}
-.gallery-section h3{font-family:var(--serif);font-size:1.5rem;color:var(--ink);margin-bottom:1rem}
-.cat-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.cat-photos .tile{border-radius:2px;overflow:hidden;background:var(--ice);cursor:pointer;aspect-ratio:4/3}
-.cat-photos .tile img{
-  display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s
-}
-.cat-photos .tile:hover img{transform:scale(1.05)}
-.cat-photos .tile.lg{grid-column:1/-1;aspect-ratio:20/9}
-
-.lightbox{
-  position:fixed;inset:0;z-index:300;background:rgba(15,26,20,.97);
-  display:none;align-items:center;justify-content:center
-}
-.lightbox.open{display:flex}
-.lightbox-img{max-width:88vw;max-height:82vh;object-fit:contain;display:block}
-.lightbox-close{
-  position:absolute;top:1.5rem;right:1.5rem;
-  background:none;border:1px solid rgba(255,255,255,.5);color:#fff;
-  width:2.4rem;height:2.4rem;font-size:1.05rem;cursor:pointer;transition:all .2s
-}
-.lightbox-close:hover{background:#fff;color:var(--ink)}
-.lightbox-nav{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:none;border:none;color:#fff;font-size:2.6rem;line-height:1;
-  cursor:pointer;padding:.5rem 1rem;opacity:.7;transition:opacity .2s
-}
-.lightbox-nav:hover{opacity:1}
-.lightbox-prev{left:.5rem}
-.lightbox-next{right:.5rem}
-.lightbox-counter{
-  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:rgba(255,255,255,.7)
-}
 @media(max-width:640px){
-  .gallery-modal-header{padding:1.1rem 1.2rem}
-  .gallery-modal-title{font-size:1.05rem}
-  .gallery-nav-title{padding:1.5rem 1.2rem 0;font-size:1.3rem}
-  .gallery-nav{padding:1rem 1.2rem 0;gap:.8rem}
-  .gallery-nav-item{width:110px}
-  .gallery-sections{padding:1.6rem 1.2rem 3rem}
-  .gallery-section h3{font-size:1.25rem}
-  .cat-photos{gap:.6rem}
-  .lightbox-nav{font-size:2rem;padding:.4rem .6rem}
-  .day-split-anchored{align-items:start}
-  .ver-mas-fotos,.day-left .ver-mas-fotos{width:100%;justify-content:center;margin-top:1.8rem;align-self:stretch}
-}
-
-/* INCLUDES */
-.includes-section{background:var(--ink)}
-.includes-inner{max-width:1100px;margin:0 auto}
-.includes-section .section-label{color:var(--gold)}
-.includes-section h2{color:#fff}
-.includes-section h2 em{color:var(--gold)}
-.grid-includes{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:1px;background:rgba(255,255,255,.07);
-  margin-top:3rem;border:1px solid rgba(255,255,255,.07)
-}
-.include-item{min-height:240px;perspective:1200px}
-.flip-inner{
-  position:relative;width:100%;height:100%;min-height:240px;
-  transition:transform .6s cubic-bezier(.4,.2,.2,1);
-  transform-style:preserve-3d
-}
-.include-item:hover .flip-inner{transform:rotateY(180deg)}
-.flip-front,.flip-back{
-  position:absolute;inset:0;backface-visibility:hidden;
-  display:flex;flex-direction:column;padding:2.5rem 2rem
-}
-.flip-front{
-  align-items:center;justify-content:center;background:var(--ink)
-}
-.flip-back{
-  justify-content:center;background:#1a3028;transform:rotateY(180deg)
-}
-.include-icon{font-size:2rem}
-.flip-front .include-icon{font-size:3.2rem;margin-bottom:0}
-.flip-back .include-icon{margin-bottom:1rem}
-
-.flip-front-photo{
-  padding:0;align-items:center;justify-content:center;
-  overflow:hidden
-}
-.flip-front-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.flip-front-photo::after{
-  content:'';position:absolute;inset:0;background:rgba(0,0,0,.4)
-}
-.flip-front-title{
-  position:relative;z-index:1;color:#fff;text-align:center;
-  font-family:var(--serif);font-size:1.2rem;line-height:1.2;
-  padding:1.4rem 1.6rem
-}
-.include-item h3{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:.6rem}
-.include-item p{font-size:.87rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
-
-/* CTA */
-.cta-section{background:var(--moss);color:#fff;text-align:center;padding:7rem 2.5rem}
-.cta-section .section-label{color:var(--gold)}
-.cta-section h2{color:#fff;max-width:580px;margin:0 auto 1rem}
-.cta-section h2 em{color:var(--gold)}
-.cta-section p{
-  font-size:1rem;font-weight:300;color:rgba(255,255,255,.7);
-  max-width:420px;margin:0 auto 2.5rem;line-height:1.75
-}
-.badge{
-  display:inline-block;margin-bottom:1.5rem;
-  font-family:var(--mono);font-size:.67rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--gold);
-  border:1px solid rgba(201,168,76,.4);padding:.38rem 1rem
-}
-
-/* FOOTER */
-footer{
-  background:var(--ink);color:rgba(255,255,255,.35);
-  padding:2rem 2.5rem;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:1rem;
-  font-family:var(--mono);font-size:.65rem;letter-spacing:.07em
-}
-
-/* ── MOBILE ── */
-@media(max-width:640px){
-  nav{padding:.9rem 1.2rem}
-  .logo{font-size:1.2rem}
-  .tagline{display:none}
-  .cta-nav{font-size:.62rem;padding:.45rem .9rem}
-  .hero{min-height:100svh}
-  .hero-bg{object-position:center center}
-  .hero-content{padding:0 1.2rem 4rem}
-  .hero h1{font-size:2.8rem;margin-bottom:1rem}
-  .hero-sub{font-size:.92rem;margin-bottom:1.2rem}
-  .hero-date{font-size:.68rem;margin-bottom:1.6rem}
-  .btn-primary{font-size:.7rem;padding:.9rem 1.8rem}
-  .scroll-hint{display:none}
-  .band{padding:1.2rem 0}
-  .band-track{gap:1.2rem;padding-left:1.2rem}
-  .band-item{font-size:.62rem}
-  section{padding:3.5rem 1.2rem}
-  h2{font-size:2rem}
-  .what-grid{grid-template-columns:1fr;gap:2rem}
-  .day-section{padding:3.5rem 1.2rem}
-  .day-split{grid-template-columns:1fr;gap:2rem}
-  .day-split-fill{align-items:start}
-  .day-split-fill .day-media{display:block}
-  .day-split-fill .day-media .day-photo-row{flex:none;min-height:0}
-  .day-split-fill .day-photo-row .sq{aspect-ratio:1/1}
-  .day-mosaic3{height:auto;grid-template-columns:1fr;grid-template-rows:auto}
-  .day-mosaic3 .big{grid-column:1;grid-row:auto;height:240px}
-  .day-mosaic3 .sm{grid-column:1;grid-row:auto;height:200px}
-  .grid-includes{grid-template-columns:1fr}
-  .include-item{min-height:200px}
-  .flip-inner{min-height:200px}
-  .flip-front,.flip-back{padding:1.6rem 1.2rem}
-  .cta-section{padding:4.5rem 1.2rem}
-  .cta-section h2{font-size:2rem}
-  footer{flex-direction:column;text-align:center;padding:1.5rem 1.2rem}
-}
-@media(min-width:641px) and (max-width:960px){
-  .what-grid{grid-template-columns:1fr;gap:3rem}
-  .grid-includes{grid-template-columns:repeat(2,1fr)}
-  section{padding:4.5rem 2rem}
-  .hero h1{font-size:4rem}
+  .pk-navlinks{gap:16px}
+  nav{padding:14px 16px}
 }
 </style>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="nav-brand">
-    <div class="logo">Pir<span>ka</span></div>
-    <span class="tagline">Te mostramos el camino</span>
+<nav id="pk-nav">
+  <a href="#top" style="display:flex;color:var(--pirka-bone)">
+    <span class="pk-wordmark" style="--type-wordmark:30px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></span>
+  </a>
+  <div class="pk-navlinks">
+    <a href="#about" style="color:var(--pirka-bone)">About us</a>
+    <a href="#alcance" style="color:var(--pirka-bone)">Alcance</a>
+    <a href="#como" style="color:var(--pirka-bone)">Cómo trabajamos</a>
+    <a href="#por-que" style="color:var(--pirka-bone)">Por qué</a>
+    <a href="cruce-de-los-andes.html" style="color:var(--pirka-bone)">El Cruce de los Andes 2026</a>
+    <a href="#contacto" style="color:var(--pirka-salmon)">Contacto</a>
   </div>
-  <a href="#contacto" class="cta-nav">Consultar cupo</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <video class="hero-bg" autoplay muted loop playsinline poster="assets/hero-poster.jpg" preload="auto">
-    <source src="assets/portada.mp4" type="video/mp4">
-  </video>
-  <div class="hero-content">
-    <h1>¿Están listos<br><em>para esta</em><br>aventura?</h1>
-    <p class="hero-sub">Scrolleá y enterate.</p>
-    <div class="hero-date">4 — 8 Diciembre 2026 &nbsp;·&nbsp; Bariloche, Patagonia</div>
-    <a href="#dia-1" class="btn-primary">Sí, estoy listo</a>
+<!-- PORTADA -->
+<header id="top" style="position:relative;height:100vh;min-height:600px;overflow:hidden">
+  <img src="assets/pirka-bg-portada.jpg" alt="Foto de portada: cordillera" loading="eager" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:var(--pirka-scrim-strong);pointer-events:none"></div>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:0 24px;text-align:center;pointer-events:none">
+    <span class="pk-wordmark" style="--type-wordmark:200px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></span>
+    <p style="margin:0;font:400 clamp(14px,1.6vw,20px)/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase">Te mostramos el camino</p>
   </div>
-  <div class="scroll-hint">scroll</div>
-</section>
+  <p style="position:absolute;bottom:40px;left:0;right:0;margin:0;text-align:center;font:400 13px/1 var(--font-mono);letter-spacing:.1em;pointer-events:none">Bariloche, Argentina · 2026</p>
+</header>
 
-<!-- BAND -->
-<div class="band">
-  <div class="band-track">
-    <div class="band-item"><strong>Casa privada</strong> — Arelauquen</div>
-    <div class="band-item"><strong>Todos los traslados</strong> incluidos</div>
-    <div class="band-item"><strong>Todas las comidas</strong> incluidas</div>
-    <div class="band-item"><strong>Punto exclusivo</strong> — Base Catedral</div>
-    <div class="band-item"><strong>Charla pre carrera</strong> con pros</div>
-    <div class="band-item"><strong>Recuperación</strong> post carrera</div>
-    <div class="band-item" aria-hidden="true"><strong>Casa privada</strong> — Arelauquen</div>
-    <div class="band-item" aria-hidden="true"><strong>Todos los traslados</strong> incluidos</div>
-    <div class="band-item" aria-hidden="true"><strong>Todas las comidas</strong> incluidas</div>
-    <div class="band-item" aria-hidden="true"><strong>Punto exclusivo</strong> — Base Catedral</div>
-    <div class="band-item" aria-hidden="true"><strong>Charla pre carrera</strong> con pros</div>
-    <div class="band-item" aria-hidden="true"><strong>Recuperación</strong> post carrera</div>
-  </div>
-</div>
-
-<!-- QUÉ ES -->
-<section>
-  <div class="what-grid">
-    <div class="what-text">
-      <p class="section-label">¿Qué es Pirka?</p>
-      <h2>Somos <em>un atajo</em><br>a una experiencia inolvidable.</h2>
-      <p>Pirka nace en Bariloche, de la mano de personas que conocen la montaña de memoria. Años de convivir con esta cordillera nos mostraron lo que no está en ninguna guía: refugios, spots y experiencias únicas.</p>
-      <p>Nuestra tarea es solucionarte el alojamiento, las comidas y los traslados. Nuestra misión es que vivas Bariloche como pocos lo conocen.</p>
+<!-- ABOUT -->
+<section id="about" style="position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center">
+  <img src="assets/pirka-bg-about.jpg" alt="Foto: aguja de roca al atardecer" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:var(--pirka-scrim);pointer-events:none"></div>
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:140px clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:end;pointer-events:none">
+    <div class="reveal" style="display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font:400 13px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase">About us</p>
+      <h2 style="margin:0;font:300 clamp(40px,5.5vw,76px)/1.05 var(--font-sans);text-transform:uppercase;text-wrap:balance">Somos <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">un atajo</span> a una experiencia inolvidable</h2>
     </div>
-    <div class="what-visual">
-      <div class="day-mosaic3">
-        <div class="big"><img src="assets/hero-1.jpg" alt="Trail runners en la cordillera" loading="lazy" decoding="async"></div>
-        <div class="sm"><img src="assets/hero-2.jpg" alt="Atardecer sobre el Nahuel Huapi" loading="lazy" decoding="async"></div>
-        <div class="sm"><img src="assets/hero-3.jpg" alt="Vista aérea de la costa del lago" loading="lazy" decoding="async"></div>
-      </div>
+    <div class="reveal" style="display:flex;flex-direction:column;gap:22px;max-width:440px;justify-self:end;font:300 19px/1.55 var(--font-sans);text-wrap:pretty">
+      <p style="margin:0">Pirka nace en Bariloche, de la mano de personas que conocen la montaña de memoria.</p>
+      <p style="margin:0">Años de convivir con esta cordillera nos mostraron <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--pirka-salmon)">lo que no está en ninguna guía</span>: refugios, spots y experiencias únicas.</p>
     </div>
   </div>
 </section>
 
-<!-- DÍA 1 -->
-<div class="day-section light" id="dia-1" style="background:var(--snow2)">
-  <div class="day-inner">
-    <p class="section-label">Día 1</p>
-    <h2>Llegada y <em>bienvenida</em></h2>
-    <div class="day-split day-split-anchored">
-      <div class="day-left">
-        <div class="sched-block">
-          <div class="sched-row"><span class="sched-time">A combinar</span><span>Traslado Aeropuerto a Arelauquen</span></div>
-          <div class="sched-row"><span class="sched-time">13:00</span><span>Check In + Brunch de Bienvenida</span></div>
-          <div class="sched-row"><span class="sched-time">16:00</span><span>MasterClass con profesional de Trail Running</span></div>
-          <div class="sched-row"><span class="sched-time">17:00</span><span>Activación en la naturaleza</span></div>
-          <div class="sched-row"><span class="sched-time">20:00</span><span>Cena grupal + Carbo-loading para corredores</span></div>
-        </div>
-        <button class="ver-mas-fotos" type="button" onclick="openGallery()">
-          <span>Ver más fotos</span>
-        </button>
-      </div>
-      <div class="day-media">
-        <div class="day-video-full">
-          <video autoplay muted loop playsinline poster="assets/dia1-video-poster.jpg">
-            <source src="assets/dia1-video.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="day-photo-row">
-          <div class="sq"><img src="assets/la-maison-01.jpg" alt="La casa en Arelauquen" loading="lazy" decoding="async"></div>
-          <div class="sq"><img src="assets/la-maison-02.jpg" alt="La casa en Arelauquen" loading="lazy" decoding="async"></div>
-          <div class="sq"><img src="assets/la-maison-03.jpg" alt="La casa en Arelauquen" loading="lazy" decoding="async"></div>
-        </div>
-      </div>
+<!-- TERRITORIO -->
+<section style="position:relative;min-height:90vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
+  <img src="assets/pirka-bg-territorio.jpg" alt="Foto: lago y bosque desde el aire" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:var(--pirka-scrim-strong);pointer-events:none"></div>
+  <h2 class="reveal" style="position:relative;margin:0;padding:120px 24px;max-width:1000px;text-align:center;font:300 clamp(34px,4.6vw,64px)/1.15 var(--font-sans);text-transform:uppercase;text-wrap:balance;pointer-events:none">Bariloche no es solo el lugar donde operamos: <span style="display:block;font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">es nuestro territorio.</span></h2>
+</section>
+
+<!-- ALCANCE -->
+<section id="alcance" style="background:var(--pirka-stone);padding:clamp(96px,12vw,160px) clamp(20px,5vw,72px)">
+  <div class="reveal" style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:48px;text-align:center">
+    <p style="margin:0;font:400 13px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase">Alcance</p>
+    <h2 style="margin:0;font:300 clamp(28px,3.4vw,46px)/1.25 var(--font-sans);text-transform:uppercase;text-wrap:balance">Tomamos el objetivo de un grupo —competir, trabajar, descansar, celebrar, conocer la montaña— y lo transformamos en <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">una experiencia organizada y operativamente resuelta.</span></h2>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px">
+      <a href="#alojamiento" style="display:flex"><span class="pk-pill pk-pill--sm">01.Alojamiento</span></a>
+      <a href="#traslados" style="display:flex"><span class="pk-pill pk-pill--sm">02.Traslados</span></a>
+      <a href="#comidas" style="display:flex"><span class="pk-pill pk-pill--sm">03.Comidas</span></a>
+      <a href="#experiencias" style="display:flex"><span class="pk-pill pk-pill--sm">04.Experiencias</span></a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- GALERÍA LA CASA & EL BARRIO -->
-<div class="gallery-modal" id="galeria-casa" role="dialog" aria-modal="true" aria-label="Galería de fotos de la casa y el barrio">
-  <div class="gallery-modal-inner">
-    <div class="gallery-modal-header">
-      <span class="gallery-modal-title">La casa &amp; el barrio — Arelauquen</span>
-      <button class="gallery-close" type="button" aria-label="Cerrar galería" onclick="closeGallery()">✕</button>
+<!-- SERVICIO 01 — ALOJAMIENTO -->
+<section id="alojamiento" style="background:var(--pirka-ink);padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);border-top:1px dashed var(--pirka-hairline)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+    <div class="reveal" style="order:1;display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+      <span class="pk-pill pk-pill--sm">01.Alojamiento</span>
+      <h2 style="margin:0;font:300 clamp(34px,4vw,56px)/1.1 var(--font-sans);text-transform:uppercase">El lugar indicado, <span style="display:block;font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">para tu grupo</span></h2>
+      <hr style="border:0;border-top:1px dashed var(--pirka-hairline);margin:0;width:100%">
+      <p style="margin:0;max-width:460px;font:300 19px/1.6 var(--font-sans);text-wrap:pretty">Seleccionamos entre una variedad de opciones según: propósito y comodidades del grupo, cantidad de personas y ubicación.</p>
     </div>
-    <p class="gallery-nav-title">Recorrido por la casa</p>
-    <div class="gallery-nav" id="gallery-nav"></div>
-    <div class="gallery-sections" id="gallery-sections"></div>
-  </div>
-</div>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
-  <button class="lightbox-close" type="button" aria-label="Cerrar" onclick="closeLightbox()">✕</button>
-  <button class="lightbox-nav lightbox-prev" type="button" aria-label="Foto anterior" onclick="navLightbox(-1)">‹</button>
-  <img class="lightbox-img" id="lightbox-img" src="" alt="">
-  <button class="lightbox-nav lightbox-next" type="button" aria-label="Foto siguiente" onclick="navLightbox(1)">›</button>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
-</div>
-
-<!-- DÍA 2 -->
-<div class="day-section dark" id="dia-2" style="background:#1E3629">
-  <div class="day-inner">
-    <p class="section-label">Día 2</p>
-    <h2>Día de carrera <em>— Primer grupo</em></h2>
-    <div class="day-split day-split-fill">
-      <div>
-        <div class="sched-block">
-          <h3>Para corredores</h3>
-          <div class="sched-row"><span class="sched-time">05:30</span><span>Desayuno</span></div>
-          <div class="sched-row"><span class="sched-time">06:00</span><span>Traslado corredores – Etapa Grupo 1</span></div>
-          <div class="sched-row"><span class="sched-time">08:00</span><span>Largada de La Etapa</span></div>
-        </div>
-        <div class="sched-block">
-          <h3>Resto del grupo</h3>
-          <div class="sched-row"><span class="sched-time">10:00</span><span>Desayuno a su ritmo</span></div>
-          <div class="sched-row"><span class="sched-time">11:00</span><span>Traslado para recibir a los corredores</span></div>
-        </div>
-        <div class="sched-block">
-          <h3>Todos juntos</h3>
-          <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo en nuestro Spot-Cerro Catedral</span></div>
-          <div class="sched-row"><span class="sched-time">15:00</span><span>Traslado regreso a la casa</span></div>
-          <div class="sched-row"><span class="sched-time">18:00</span><span>Hangar: Relax post-carrera Grupo 1 + Preparación pre-carrera Grupo 2</span></div>
-          <div class="sched-row"><span class="sched-time">20:00</span><span>Hangar: Cena grupal + Carbo-loading para corredores</span></div>
-        </div>
+    <div class="reveal" style="order:2;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:clamp(150px,16vw,230px);gap:12px">
+      <div style="position:relative;grid-row:span 2;grid-column:1">
+        <img src="assets/alojamiento-1.webp" alt="Living con ventanales" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       </div>
-      <div class="day-media">
-        <div class="day-video-full">
-          <video autoplay muted loop playsinline poster="assets/dia2-video-poster.jpg">
-            <source src="assets/dia2-video.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="day-photo-row cols-2">
-          <div class="sq"><img src="assets/dia2-etapa.jpg" alt="Corredores en la etapa del Cruce de los Andes" loading="lazy" decoding="async"></div>
-          <div class="sq"><img src="assets/dia2-spot-cerro.jpg" alt="Spot propio en la base del Cerro Catedral" loading="lazy" decoding="async"></div>
-        </div>
+      <div style="position:relative;grid-row:span 2;grid-column:2">
+        <img src="assets/alojamiento-2.webp" alt="Exterior de la casa" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- DÍA 3 -->
-<div class="day-section light" id="dia-3">
-  <div class="day-inner">
-    <p class="section-label">Día 3</p>
-    <h2>Día de carrera <em>— Segundo grupo</em></h2>
-    <div class="day-split day-split-fill">
-      <div>
-        <div class="sched-block">
-          <h3>Para corredores</h3>
-          <div class="sched-row"><span class="sched-time">05:30</span><span>Desayuno</span></div>
-          <div class="sched-row"><span class="sched-time">06:00</span><span>Traslado corredores – Etapa Grupo 2</span></div>
-          <div class="sched-row"><span class="sched-time">08:00</span><span>Largada de La Etapa</span></div>
-        </div>
-        <div class="sched-block">
-          <h3>Resto del grupo</h3>
-          <div class="sched-row"><span class="sched-time">10:00</span><span>Desayuno a su ritmo</span></div>
-          <div class="sched-row"><span class="sched-time">11:00</span><span>Traslado para recibir a los corredores</span></div>
-        </div>
-        <div class="sched-block">
-          <h3>Todos juntos</h3>
-          <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo en nuestro Spot-Cerro Catedral</span></div>
-          <div class="sched-row"><span class="sched-time">15:00</span><span>Recuperación post carrera</span></div>
-          <div class="sched-row"><span class="sched-time">16:00</span><span>Traslado regreso a la casa</span></div>
-          <div class="sched-row"><span class="sched-time">20:00</span><span>Cena celebración en la casa a cargo de un Chef</span></div>
-        </div>
+      <div style="position:relative;grid-row:span 2;grid-column:1">
+        <img src="assets/alojamiento-3.webp" alt="Entrada de piedra" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       </div>
-      <div class="day-media">
-        <div class="day-video-full"><img src="assets/dia3-v4.jpg" alt="Día 3 — Cruce de los Andes" loading="lazy" decoding="async"></div>
-        <div class="day-photo-row cols-2">
-          <div class="sq"><img src="assets/dia3-v2.jpeg" alt="Día 3 — Cruce de los Andes" loading="lazy" decoding="async"></div>
-          <div class="sq"><img src="assets/dia3-v3.jpg" alt="Día 3 — Cruce de los Andes" loading="lazy" decoding="async"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- DÍA 4 -->
-<div class="day-section dark" id="dia-4">
-  <div class="day-inner">
-    <p class="section-label">Día 4</p>
-    <h2>Cierre de <em>viaje</em></h2>
-    <div class="day-split">
-      <div>
-        <div class="sched-block">
-          <div class="sched-row"><span class="sched-time">11:00</span><span>Off-Road Otto: Ascenso en 4x4 a la cumbre</span></div>
-          <div class="sched-row"><span class="sched-time">12:00</span><span>Trekking corto a Piedra de Hasburgo</span></div>
-          <div class="sched-row"><span class="sched-time">13:00</span><span>Almuerzo Refugio Arelauquen con Parrillero</span></div>
-          <div class="sched-row"><span class="sched-time">15:00</span><span>Libre: A tu ritmo</span></div>
-          <div class="sched-row"><span class="sched-time">20:00</span><span>Cena & Cierre: La gran despedida</span></div>
-        </div>
-      </div>
-      <div class="day-media">
-        <div class="day-mosaic3">
-          <div class="big"><img src="assets/dia4-piedra-hamburgo.jpg" alt="Vista desde la Piedra de Hasburgo" loading="lazy" decoding="async"></div>
-          <div class="sm"><img src="assets/refugio.jpg" alt="Refugio Arelauquen al atardecer" style="object-position:center 40%" loading="lazy" decoding="async"></div>
-          <div class="sm"><img src="assets/dia4-refugio2.jpg" alt="Refugio Arelauquen" loading="lazy" decoding="async"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- DÍA 5 -->
-<div class="day-section light" id="dia-5">
-  <div class="day-inner">
-    <p class="section-label">Día 5</p>
-    <h2>Antes de <em>irnos</em></h2>
-    <div class="sched-block">
-      <div class="sched-row"><span class="sched-time">09:00</span><span>Desayuno</span></div>
-      <div class="sched-row"><span class="sched-time">10:00</span><span>Check out</span></div>
-      <div class="sched-row"><span class="sched-time">A combinar</span><span>Traslado al aeropuerto</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- INCLUYE -->
-<section class="includes-section" id="incluye">
-  <div class="includes-inner">
-    <p class="section-label">Todo resuelto</p>
-    <h2>Qué <em>incluye</em></h2>
-    <div class="grid-includes">
-      <div class="include-item">
-        <div class="flip-inner">
-          <div class="flip-front flip-front-photo">
-            <img src="assets/la-maison-01.jpg" alt="Casa Privada - Arelauquen" loading="lazy" decoding="async">
-            <span class="flip-front-title">Casa Privada - Arelauquen</span>
-          </div>
-          <div class="flip-back">
-            <p>Barrio cerrado exclusivo. La casa es de tu equipo los cuatro días, con todo el espacio para vivir La Etapa como se merece.</p>
-          </div>
-        </div>
-      </div>
-      <div class="include-item">
-        <div class="flip-inner">
-          <div class="flip-front flip-front-photo">
-            <img src="assets/traslados-3.jpg" alt="Todos los Traslados" loading="lazy" decoding="async">
-            <span class="flip-front-title">Todos los Traslados</span>
-          </div>
-          <div class="flip-back">
-            <p>Desde que llegás hasta que te vas. Traslados desde y hacia el aeropuerto, traslados al Cerro, a la largada, al refugio y todo lo que necesites.</p>
-          </div>
-        </div>
-      </div>
-      <div class="include-item">
-        <div class="flip-inner">
-          <div class="flip-front flip-front-photo">
-            <img src="assets/tarjeta-comidas.jpg" alt="Todas las Comidas" loading="lazy" decoding="async">
-            <span class="flip-front-title">Todas las Comidas</span>
-          </div>
-          <div class="flip-back">
-            <p>Desayunos, almuerzos y cenas. Menú pensado para rendimiento, con almuerzo especial en refugio de montaña.</p>
-          </div>
-        </div>
-      </div>
-      <div class="include-item">
-        <div class="flip-inner">
-          <div class="flip-front flip-front-photo">
-            <img src="assets/dia2-spot-cerro.jpg" alt="Base Pirka en el Cerro Catedral" loading="lazy" decoding="async">
-            <span class="flip-front-title">Base Pirka en el Cerro Catedral</span>
-          </div>
-          <div class="flip-back">
-            <p>Un espacio exclusivo para tu equipo durante toda la carrera.</p>
-          </div>
-        </div>
-      </div>
-      <div class="include-item">
-        <div class="flip-inner">
-          <div class="flip-front flip-front-photo">
-            <img src="assets/recuperacion-2.jpg" alt="Pre &amp; Post Carrera" loading="lazy" decoding="async">
-            <span class="flip-front-title">Pre &amp; Post Carrera</span>
-          </div>
-          <div class="flip-back">
-            <p>Charla previa con profesionales en estrategia, nutrición y logística. Programa de recuperación activa. Porque el cuerpo lo pide y el equipo se lo merece.</p>
-          </div>
-        </div>
-      </div>
-      <div class="include-item">
-        <div class="flip-inner">
-          <div class="flip-front flip-front-photo">
-            <img src="assets/dia4-piedra-hamburgo.jpg" alt="Experiencia Otto & Refugio" loading="lazy" decoding="async">
-            <span class="flip-front-title">Experiencia Otto &amp; Refugio</span>
-          </div>
-          <div class="flip-back">
-            <p>Ascenso en 4x4, caminata con vistas increíbles a Piedra de Hasburgo y un almuerzo exclusivo de montaña.</p>
-          </div>
-        </div>
+      <div style="position:relative;grid-row:span 2;grid-column:2">
+        <img src="assets/alojamiento-4.webp" alt="Pileta con vista" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contacto">
-  <p class="section-label">Reservas abiertas</p>
-  <p class="badge">⚡ Cupos limitados</p>
-  <h2>¿Tu equipo<br>viene a <em>La etapa</em>?</h2>
-  <p>Mandanos un mensaje para conocer disponibilidad, capacidad y precio. Los cupos son limitados y la casa no espera.</p>
-  <a href="https://wa.me/5492944000000" class="btn-primary">Consultar por WhatsApp</a>
+<!-- SERVICIO 02 — TRASLADOS -->
+<section id="traslados" style="background:var(--pirka-stone);padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);border-top:1px dashed var(--pirka-hairline)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+    <div class="reveal" style="order:2;display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+      <span class="pk-pill pk-pill--sm">02.Traslados</span>
+      <h2 style="margin:0;font:300 clamp(34px,4vw,56px)/1.1 var(--font-sans);text-transform:uppercase">Cada movimiento <span style="display:block;font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">contemplado</span></h2>
+      <hr style="border:0;border-top:1px dashed var(--pirka-hairline);margin:0;width:100%">
+      <p style="margin:0;max-width:460px;font:300 19px/1.6 var(--font-sans);text-wrap:pretty">Desde la llegada al aeropuerto hasta el regreso, coordinamos los traslados alrededor de todo el itinerario.</p>
+    </div>
+    <div class="reveal" style="order:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:clamp(150px,16vw,230px);gap:12px">
+      <div style="position:relative;grid-row:span 2;grid-column:1">
+        <img src="assets/traslados-1.webp" alt="Ruta y cordillera" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Movilidad</span>
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:2">
+        <img src="assets/traslados-2.webp" alt="Camino nevado" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:2">
+        <img src="assets/traslados-3.webp" alt="Lago y embarcación" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Accesos</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-  <div style="font-family:'DM Serif Display',serif;color:#fff;font-size:1.2rem">Pir<span style="color:#C9A84C">ka</span></div>
-  <div>Bariloche, Patagonia Argentina</div>
-  <div>© 2026 Pirka — La Etapa</div>
+<!-- SERVICIO 03 — COMIDAS -->
+<section id="comidas" style="background:var(--pirka-ink);padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);border-top:1px dashed var(--pirka-hairline)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+    <div class="reveal" style="order:1;display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+      <span class="pk-pill pk-pill--sm">03.Comidas</span>
+      <h2 style="margin:0;font:300 clamp(34px,4vw,56px)/1.1 var(--font-sans);text-transform:uppercase">Comidas, <span style="display:block;font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">al ritmo del viaje</span></h2>
+      <hr style="border:0;border-top:1px dashed var(--pirka-hairline);margin:0;width:100%">
+      <p style="margin:0;max-width:460px;font:300 19px/1.6 var(--font-sans);text-wrap:pretty">Planificamos las comidas en función de las actividades, horarios y necesidades del grupo. Desde un desayuno temprano antes de competir hasta una cena de celebración al terminar la jornada.</p>
+    </div>
+    <div class="reveal" style="order:2;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:clamp(150px,16vw,230px);gap:12px">
+      <div style="position:relative;grid-row:span 2;grid-column:1">
+        <img src="assets/comidas-1.webp" alt="Parrilla / fuego" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">En torno al fuego</span>
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:2">
+        <img src="assets/comidas-2.webp" alt="Mesa con vista al lago" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Cena al atardecer</span>
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:2">
+        <img src="assets/comidas-3.webp" alt="Picada a orillas del lago" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Picada argentina</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIO 04 — EXPERIENCIAS -->
+<section id="experiencias" style="background:var(--pirka-stone);padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);border-top:1px dashed var(--pirka-hairline)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+    <div class="reveal" style="order:2;display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+      <span class="pk-pill pk-pill--sm">04.Experiencias</span>
+      <h2 style="margin:0;font:300 clamp(34px,4vw,56px)/1.1 var(--font-sans);text-transform:uppercase">Actividades para <span style="display:block;font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">vivir Bariloche, desde adentro</span></h2>
+      <hr style="border:0;border-top:1px dashed var(--pirka-hairline);margin:0;width:100%">
+      <p style="margin:0;max-width:460px;font:300 19px/1.6 var(--font-sans);text-wrap:pretty">Elegimos las actividades según el tiempo disponible, nivel de intensidad e intereses del grupo (deporte, turismo, gastronomía, etc.)</p>
+    </div>
+    <div class="reveal" style="order:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:clamp(150px,16vw,230px);gap:12px">
+      <div style="position:relative;grid-row:span 1;grid-column:1">
+        <img src="assets/experiencias-1.webp" alt="Cabalgata" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Cabalgata</span>
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:2">
+        <img src="assets/experiencias-2.webp" alt="Kayak en el lago" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Paseo en kayak</span>
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:1">
+        <img src="assets/experiencias-3.webp" alt="Té / gourmet frente al lago" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Experiencia gourmet</span>
+      </div>
+      <div style="position:relative;grid-row:span 1;grid-column:2">
+        <img src="assets/experiencias-4.webp" alt="Paseo en tren o barco" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span style="position:absolute;top:14px;left:14px;font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pirka-bone);text-shadow:0 0 12px rgba(19,17,16,.7);pointer-events:none">Paseo entre montañas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO TRABAJAMOS -->
+<section id="como" style="background:var(--pirka-stone);padding:clamp(96px,12vw,160px) clamp(20px,5vw,72px);border-top:1px dashed var(--pirka-hairline)">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
+      <p style="margin:0;font:400 13px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase">Cómo trabajamos</p>
+      <h2 style="margin:0;font:300 clamp(34px,4vw,56px)/1.1 var(--font-sans);text-transform:uppercase">Del objetivo <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">al destino</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:48px 40px">
+      <div class="reveal" style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px dashed var(--pirka-hairline)">
+        <span style="font:400 13px/1 var(--font-mono);letter-spacing:.12em;color:var(--pirka-salmon)">01.</span>
+        <h3 style="margin:0;font:italic 600 26px/1.2 var(--font-serif)">Nos contás el objetivo</h3>
+        <p style="margin:0;font:300 18px/1.55 var(--font-sans);text-wrap:pretty">Competir, trabajar, descansar, celebrar o conocer la montaña. Fechas y cantidad de personas.</p>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px dashed var(--pirka-hairline)">
+        <span style="font:400 13px/1 var(--font-mono);letter-spacing:.12em;color:var(--pirka-salmon)">02.</span>
+        <h3 style="margin:0;font:italic 600 26px/1.2 var(--font-serif)">Armamos la propuesta</h3>
+        <p style="margin:0;font:300 18px/1.55 var(--font-sans);text-wrap:pretty">Alojamiento, traslados, comidas y experiencias, pensados para ese grupo y ese objetivo.</p>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px dashed var(--pirka-hairline)">
+        <span style="font:400 13px/1 var(--font-mono);letter-spacing:.12em;color:var(--pirka-salmon)">03.</span>
+        <h3 style="margin:0;font:italic 600 26px/1.2 var(--font-serif)">Operamos en destino</h3>
+        <p style="margin:0;font:300 18px/1.55 var(--font-sans);text-wrap:pretty">Coordinamos cada parte del viaje en Bariloche, para que el grupo solo se ocupe de vivirlo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section id="por-que" style="position:relative;overflow:hidden">
+  <img src="assets/pirka-bg-porque.jpg" alt="Foto: lago y cordillera en blanco y negro" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:var(--pirka-scrim-strong);pointer-events:none"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(120px,14vw,200px) clamp(20px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:80px;pointer-events:none">
+    <div class="reveal" style="display:flex;flex-direction:column;align-items:flex-start">
+      <span style="font:300 clamp(20px,2vw,28px)/1 var(--font-sans);text-transform:uppercase;padding-left:.3em">¿Por qué</span>
+      <span class="pk-wordmark" style="--type-wordmark:180px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka?</span></span>
+    </div>
+    <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:48px 40px">
+      <div class="reveal" style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid var(--pirka-hairline)">
+        <h3 style="margin:0;font:italic 600 24px/1.2 var(--font-serif)">Conocemos la montaña de memoria</h3>
+        <p style="margin:0;font:300 18px/1.55 var(--font-sans);text-wrap:pretty">Pirka nace en Bariloche. Esta cordillera es nuestro territorio.</p>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid var(--pirka-hairline)">
+        <h3 style="margin:0;font:italic 600 24px/1.2 var(--font-serif)">Lo que no está en ninguna guía</h3>
+        <p style="margin:0;font:300 18px/1.55 var(--font-sans);text-wrap:pretty">Refugios, spots y experiencias únicas que solo se conocen viviendo acá.</p>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid var(--pirka-hairline)">
+        <h3 style="margin:0;font:italic 600 24px/1.2 var(--font-serif)">Todo resuelto</h3>
+        <p style="margin:0;font:300 18px/1.55 var(--font-sans);text-wrap:pretty">Una experiencia organizada y operativamente resuelta, de la llegada al regreso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="background:var(--pirka-stone);padding:clamp(100px,13vw,170px) clamp(20px,5vw,72px);border-top:1px dashed var(--pirka-hairline)">
+  <div class="reveal" style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center">
+    <p style="margin:0;font:400 13px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase">Contacto</p>
+    <h2 style="margin:0;font:300 clamp(36px,4.6vw,64px)/1.1 var(--font-sans);text-transform:uppercase;text-wrap:balance">Contanos qué necesita <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">tu grupo.</span></h2>
+    <p style="margin:0;max-width:520px;font:300 19px/1.6 var(--font-sans);text-wrap:pretty">Fechas, cantidad de personas y objetivo del viaje. Con eso armamos una propuesta a medida.</p>
+    <a href="https://wa.me/5492944000000" style="display:inline-flex;align-items:center;height:58px;padding:0 32px;border-radius:999px;background:var(--pirka-earth);color:var(--pirka-bone);font:400 15px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase">Escribinos por WhatsApp</a>
+  </div>
+</section>
+
+<footer style="background:var(--pirka-ink);border-top:1px dashed var(--pirka-hairline);padding:56px clamp(20px,5vw,72px) 44px;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center">
+  <span class="pk-wordmark" style="--type-wordmark:72px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></span>
+  <p style="margin:0;font:400 12px/1 var(--font-mono);letter-spacing:.12em;word-spacing:1.6em;text-transform:uppercase">Te mostramos el camino</p>
+  <p style="margin:0;font:400 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.6">Bariloche, Patagonia Argentina · © 2026 Pirka</p>
 </footer>
 
 <script>
-  const nav = document.getElementById('nav');
+  const nav = document.getElementById('pk-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Galería "La casa & el barrio" — recorrido por ambientes, estilo Airbnb
-  const galleryCategories = [
-    { name: 'Vistas generales', photos: [1, 29, 26] },
-    { name: 'Living comedor', photos: [3, 8, 7, 6, 4, 30] },
-    { name: 'Cocina comedor', photos: [31, 9, 10, 11, 33] },
-    { name: '1ra habitación master', photos: [13, 34, 15, 16] },
-    { name: '2da habitación master', photos: [19, 36, 37] },
-    { name: '1ra habitación auxiliar', photos: [17, 18, 35] },
-    { name: '2da habitación auxiliar', photos: [38, 35, 39] },
-    { name: '3ra habitación auxiliar', photos: [35, 41] },
-    { name: '4ta habitación auxiliar', photos: [5] }
-  ];
-  const photoSrc = (n) => `assets/la-maison-${String(n).padStart(2, '0')}.jpg`;
-  const slugify = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-');
+  const revealIO = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-in'); revealIO.unobserve(e.target); }
+  }), { threshold: 0 });
 
-  // Tile size pattern per category: groups of [sm, sm, lg], with a clean tail
-  function tileSizes(n) {
-    const full = Math.floor(n / 3) * 3;
-    const rem = n - full;
-    const sizes = [];
-    for (let i = 0; i < full; i++) sizes.push(i % 3 === 2 ? 'lg' : 'sm');
-    for (let i = 0; i < rem; i++) sizes.push(rem === 1 ? 'lg' : 'sm');
-    return sizes;
-  }
-
-  const galleryPhotos = []; // flat list of image srcs, in tour order, for the lightbox
-  const galleryModal = document.getElementById('galeria-casa');
-  const galleryNav = document.getElementById('gallery-nav');
-  const gallerySections = document.getElementById('gallery-sections');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxCounter = document.getElementById('lightbox-counter');
-  let currentPhoto = 0;
-
-  galleryCategories.forEach((cat) => {
-    const slug = slugify(cat.name);
-    const sizes = tileSizes(cat.photos.length);
-
-    const navItem = document.createElement('button');
-    navItem.className = 'gallery-nav-item';
-    navItem.type = 'button';
-    navItem.innerHTML = `<span class="thumb"><img src="${photoSrc(cat.photos[0])}" alt="${cat.name}" loading="lazy" decoding="async"></span><span class="label">${cat.name}</span>`;
-    navItem.addEventListener('click', () => {
-      document.getElementById(`cat-${slug}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    galleryNav.appendChild(navItem);
-
-    const section = document.createElement('div');
-    section.className = 'gallery-section';
-    section.id = `cat-${slug}`;
-    const photosHtml = cat.photos.map((n, i) => {
-      const idx = galleryPhotos.length;
-      galleryPhotos.push(photoSrc(n));
-      return `<div class="tile ${sizes[i]}" data-idx="${idx}"><img src="${photoSrc(n)}" alt="${cat.name} — La casa en Arelauquen" loading="lazy" decoding="async"></div>`;
-    }).join('');
-    section.innerHTML = `<h3>${cat.name}</h3><div class="cat-photos">${photosHtml}</div>`;
-    gallerySections.appendChild(section);
-  });
-
-  gallerySections.addEventListener('click', (e) => {
-    const tile = e.target.closest('.tile');
-    if (tile) openLightbox(Number(tile.dataset.idx));
-  });
-
-  function openGallery() {
-    galleryModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeGallery() {
-    galleryModal.classList.remove('open');
-    closeLightbox();
-    document.body.style.overflow = '';
-  }
-  function openLightbox(i) {
-    currentPhoto = i;
-    updateLightbox();
-    lightbox.classList.add('open');
-  }
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-  }
-  function navLightbox(dir) {
-    currentPhoto = (currentPhoto + dir + galleryPhotos.length) % galleryPhotos.length;
-    updateLightbox();
-  }
-  function updateLightbox() {
-    lightboxImg.src = galleryPhotos[currentPhoto];
-    lightboxCounter.textContent = `${currentPhoto + 1} / ${galleryPhotos.length}`;
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (lightbox.classList.contains('open')) {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') navLightbox(1);
-      if (e.key === 'ArrowLeft') navLightbox(-1);
-    } else if (galleryModal.classList.contains('open') && e.key === 'Escape') {
-      closeGallery();
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      el.classList.add('no-anim', 'is-in');
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('no-anim')));
+    } else {
+      revealIO.observe(el);
     }
-  });
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
   });
 </script>
 </body>

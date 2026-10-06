@@ -52,10 +52,25 @@ a:hover{color:#FAF7F2}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,5vw,72px);background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
 nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairline)}
 .pk-navlinks{display:flex;gap:28px;overflow-x:auto;font:400 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.pk-navtoggle{display:none;background:none;border:none;color:var(--pirka-bone);font:400 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:10px 4px}
 
-@media(max-width:640px){
-  .pk-navlinks{gap:16px}
+@media(max-width:700px){
   nav{padding:14px 16px}
+  .pk-navtoggle{display:block}
+  .pk-navlinks{
+    position:fixed;inset:0;margin:0;
+    background:rgba(19,17,16,.97);
+    flex-direction:column;flex-wrap:nowrap;
+    justify-content:center;align-items:center;
+    gap:36px;overflow:auto;white-space:normal;
+    font-size:15px;
+    opacity:0;visibility:hidden;transform:translateY(-12px);
+    transition:opacity .25s ease,transform .25s ease,visibility 0s linear .25s;
+  }
+  .pk-navlinks.open{
+    opacity:1;visibility:visible;transform:translateY(0);
+    transition:opacity .25s ease,transform .25s ease;
+  }
 }
 </style>
 </head>
@@ -65,7 +80,8 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
   <a href="#top" style="display:flex;color:var(--pirka-bone)">
     <span class="pk-wordmark" style="--type-wordmark:30px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></span>
   </a>
-  <div class="pk-navlinks">
+  <button id="pk-nav-toggle" class="pk-navtoggle" aria-expanded="false" aria-controls="pk-navlinks">Menú</button>
+  <div id="pk-navlinks" class="pk-navlinks">
     <a href="#about" style="color:var(--pirka-bone)">About us</a>
     <a href="#alcance" style="color:var(--pirka-bone)">Alcance</a>
     <a href="#como" style="color:var(--pirka-bone)">Cómo trabajamos</a>
@@ -80,7 +96,7 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
   <img src="assets/pirka-bg-portada.jpg" alt="Foto de portada: cordillera" loading="eager" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
   <div style="position:absolute;inset:0;background:var(--pirka-scrim-strong);pointer-events:none"></div>
   <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:0 24px;text-align:center;pointer-events:none">
-    <span class="pk-wordmark" style="--type-wordmark:200px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></span>
+    <span class="pk-wordmark" style="--type-wordmark:clamp(90px,24vw,200px)"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></span>
     <p style="margin:0;font:400 clamp(14px,1.6vw,20px)/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase">Te mostramos el camino</p>
   </div>
   <p style="position:absolute;bottom:40px;left:0;right:0;margin:0;text-align:center;font:400 13px/1 var(--font-mono);letter-spacing:.1em;pointer-events:none">Bariloche, Argentina · 2026</p>
@@ -255,7 +271,7 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
   <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(120px,14vw,200px) clamp(20px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:80px;pointer-events:none">
     <div class="reveal" style="display:flex;flex-direction:column;align-items:flex-start">
       <span style="font:300 clamp(20px,2vw,28px)/1 var(--font-sans);text-transform:uppercase;padding-left:.3em">¿Por qué</span>
-      <span class="pk-wordmark" style="--type-wordmark:180px"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka?</span></span>
+      <span class="pk-wordmark" style="--type-wordmark:clamp(80px,20vw,180px)"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka?</span></span>
     </div>
     <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:48px 40px">
       <div class="reveal" style="display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:1px solid var(--pirka-hairline)">
@@ -295,6 +311,19 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
   });
+
+  const navToggle = document.getElementById('pk-nav-toggle');
+  const navLinks = document.getElementById('pk-navlinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.textContent = isOpen ? 'Cerrar' : 'Menú';
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.textContent = 'Menú';
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
 
   const revealIO = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('is-in'); revealIO.unobserve(e.target); }

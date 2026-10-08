@@ -72,6 +72,21 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
     transition:opacity .25s ease,transform .25s ease;
   }
 }
+
+.pk-wa-fab{position:fixed;bottom:28px;right:28px;z-index:90;width:60px;height:60px;border-radius:50%;background:var(--pirka-earth);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(19,17,16,.4);cursor:pointer;transition:background .2s ease,transform .2s ease}
+.pk-wa-fab:hover{background:var(--pirka-salmon);transform:scale(1.06)}
+.pk-wa-fab svg{width:28px;height:28px;fill:var(--pirka-bone)}
+@media(max-width:700px){.pk-wa-fab{bottom:18px;right:18px;width:54px;height:54px}.pk-wa-fab svg{width:25px;height:25px}}
+
+.pk-wa-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
+.pk-wa-modal.open{opacity:1;visibility:visible;transition:opacity .25s ease}
+.pk-wa-modal__scrim{position:absolute;inset:0;background:var(--pirka-scrim-strong)}
+.pk-wa-modal__box{position:relative;width:100%;max-width:420px;background:var(--pirka-stone);border:1px solid var(--pirka-hairline);border-radius:20px;padding:48px 32px 36px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;transform:translateY(16px);transition:transform .25s ease}
+.pk-wa-modal.open .pk-wa-modal__box{transform:translateY(0)}
+.pk-wa-modal__close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--pirka-bone);font:400 12px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:10px}
+.pk-wa-modal__close:hover{color:var(--pirka-salmon)}
+.pk-wa-modal__icon{width:76px;height:76px;border-radius:50%;background:var(--pirka-earth);display:flex;align-items:center;justify-content:center}
+.pk-wa-modal__icon svg{width:36px;height:36px;fill:var(--pirka-bone)}
 </style>
 </head>
 <body>
@@ -295,7 +310,7 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
     <p style="margin:0;font:400 13px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase">Contacto</p>
     <h2 style="margin:0;font:300 clamp(36px,4.6vw,64px)/1.1 var(--font-sans);text-transform:uppercase;text-wrap:balance">Contanos qué necesita <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">tu grupo.</span></h2>
     <p style="margin:0;max-width:520px;font:300 19px/1.6 var(--font-sans);text-wrap:pretty">Fechas, cantidad de personas y objetivo del viaje. Con eso armamos una propuesta a medida.</p>
-    <a href="https://wa.me/5492944581821" style="display:inline-flex;align-items:center;height:58px;padding:0 32px;border-radius:999px;background:var(--pirka-earth);color:var(--pirka-bone);font:400 15px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase">Escribinos por WhatsApp</a>
+    <button type="button" class="js-open-wa-modal" style="display:inline-flex;align-items:center;height:58px;padding:0 32px;border-radius:999px;background:var(--pirka-earth);color:var(--pirka-bone);font:400 15px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer">Escribinos por WhatsApp</button>
   </div>
 </section>
 
@@ -304,6 +319,23 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
   <p style="margin:0;font:400 12px/1 var(--font-mono);letter-spacing:.12em;word-spacing:1.6em;text-transform:uppercase">Te mostramos el camino</p>
   <p style="margin:0;font:400 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.6">Bariloche, Patagonia Argentina · © 2026 Pirka</p>
 </footer>
+
+<button type="button" class="pk-wa-fab js-open-wa-modal" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</button>
+
+<div id="pk-wa-modal" class="pk-wa-modal">
+  <div class="pk-wa-modal__scrim js-close-wa-modal"></div>
+  <div class="pk-wa-modal__box">
+    <button type="button" class="pk-wa-modal__close js-close-wa-modal">Cerrar ✕</button>
+    <div class="pk-wa-modal__icon">
+      <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </div>
+    <h3 style="margin:0;font:300 26px/1.2 var(--font-sans);text-transform:uppercase">Escribinos por <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;text-transform:none;color:var(--pirka-salmon)">WhatsApp</span></h3>
+    <p style="margin:0;font:300 16px/1.5 var(--font-sans)">Contanos fechas, cantidad de personas y el objetivo del viaje. Te respondemos a la brevedad.</p>
+    <a href="https://wa.me/5492944581821" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:54px;padding:0 32px;border-radius:999px;background:var(--pirka-salmon);color:var(--pirka-ink);font:400 14px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase">Abrir WhatsApp</a>
+  </div>
+</div>
 
 <script>
   const nav = document.getElementById('pk-nav');
@@ -336,6 +368,13 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
       revealIO.observe(el);
     }
   });
+
+  const waModal = document.getElementById('pk-wa-modal');
+  function openWaModal() { waModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeWaModal() { waModal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.js-open-wa-modal').forEach(el => el.addEventListener('click', openWaModal));
+  document.querySelectorAll('.js-close-wa-modal').forEach(el => el.addEventListener('click', closeWaModal));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWaModal(); });
 </script>
 </body>
 </html>

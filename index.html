@@ -263,12 +263,10 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
     pk.style.setProperty('--scale',Math.max(w/1920,h/1080));
   }
   fit();addEventListener('resize',fit);
-  function start(){
+  window.pirkaReplay=function(){
     var sc=document.getElementById('pk-scene'),c=sc.cloneNode(true);
     sc.parentNode.replaceChild(c,sc);
-  }
-  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(start);}
-  window.pirkaReplay=start;
+  };
 
   var introOverlay=document.getElementById('pk-intro');
   var dismissed=false;

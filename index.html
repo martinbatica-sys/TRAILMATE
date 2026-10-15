@@ -97,9 +97,7 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 .pk{--T:.9s}
 .pk-shake{position:absolute;inset:0;animation:pk-shake .42s linear var(--T) both}
 .pk-drop{position:absolute;left:0;right:0;bottom:416px;text-align:center;animation:pk-fall .6s cubic-bezier(.5,0,1,.5) .3s both}
-.pk-wm{display:inline-block;margin:0;font-family:"Source Sans 3","Source Sans Pro",system-ui,sans-serif;font-weight:200;font-size:calc(clamp(90px,24vw,200px) / var(--scale,1));line-height:1;letter-spacing:-0.01em;color:#faf7f2;transform-origin:50% 100%;animation:pk-land .6s ease-out var(--T) both}
-.pk-ka{font-family:"Source Serif 4","Source Serif Pro",Georgia,serif;font-style:italic;font-weight:500;font-size:1.12em}
-.pk-ground{position:absolute;top:620px;left:50%;width:1240px;height:0;border-top:1px dashed rgba(250,247,242,.45);transform:translateX(-50%);animation:pk-line .9s cubic-bezier(.2,.8,.2,1) var(--T) both}
+h1.pk-wordmark{margin:0;transform-origin:50% 100%;animation:pk-land .6s ease-out var(--T) both}
 .pk-fx{position:absolute;left:0;top:0;width:1920px;height:621px;overflow:hidden;pointer-events:none}
 .pk-smoke{position:absolute;left:0;top:0;width:1920px;height:621px;filter:url(#pk-smoke)}
 .pk-smoke i{position:absolute;left:960px;top:620px;width:var(--w);height:var(--h);margin:calc(var(--h) / -2) 0 0 calc(var(--w) / -2);border-radius:50%;opacity:0}
@@ -120,7 +118,6 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 @keyframes pk-fall{0%{transform:translateY(-1050px)}100%{transform:translateY(0)}}
 @keyframes pk-land{0%{transform:scale(1.05,.9)}30%{transform:translateY(-10px) scale(.99,1.02)}60%{transform:translateY(0) scale(1.005,.995)}100%{transform:none}}
 @keyframes pk-shake{0%{transform:none}12%{transform:translate(-6px,7px)}30%{transform:translate(5px,-4px)}50%{transform:translate(-3px,3px)}70%{transform:translate(2px,-1px)}100%{transform:none}}
-@keyframes pk-line{0%{width:0;opacity:0}20%{opacity:1}100%{width:1240px;opacity:1}}
 @keyframes pk-skirt{0%{opacity:0;transform:translate(var(--x0),0) scale(.15,.3) rotate(0)}5%{opacity:1}40%{opacity:.85}100%{opacity:0;transform:translate(var(--x1),var(--y1)) scale(1) rotate(var(--r))}}
 @keyframes pk-billow{0%{opacity:0;transform:translate(var(--x0),0) scale(.12) rotate(0)}10%{opacity:.95}45%{opacity:.7}100%{opacity:0;transform:translate(var(--x1),var(--y1)) scale(1.15) rotate(var(--r))}}
 @keyframes pk-core{0%{opacity:0;transform:translate(var(--x0),var(--y0)) scale(.25) rotate(0)}6%{opacity:1}32%{opacity:.95}100%{opacity:0;transform:translate(var(--x1),var(--y1)) scale(1.35) rotate(var(--r))}}
@@ -158,9 +155,8 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 <div id="pk-scene">
 <div class="pk-shake">
 <div class="pk-drop">
-<h1 class="pk-wm" aria-label="Pirka"><span>PIR</span><span class="pk-ka">ka</span></h1>
+<h1 class="pk-wordmark" aria-label="Pirka" style="--type-wordmark:calc(clamp(90px,24vw,200px) / var(--scale,1))"><span class="pk-wordmark__pir">PIR</span><span class="pk-wordmark__ka">ka</span></h1>
 </div>
-<div class="pk-ground"></div>
 <div class="pk-fx" aria-hidden="true">
 <div class="pk-smoke">
 <i class="sk d" style="--w:293px;--h:161px;--x0:137px;--x1:369px;--y1:-54px;--t:0.01s;--d:2.78s;--r:3deg"></i>
@@ -257,6 +253,13 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 </div>
 <script>
 (function(){
+  var introOverlay=document.getElementById('pk-intro');
+
+  if(window.innerWidth<=700){
+    introOverlay.style.display='none';
+    return;
+  }
+
   var pk=document.getElementById('pk');
   function fit(){
     var w=pk.parentNode.clientWidth,h=pk.parentNode.clientHeight;
@@ -268,7 +271,6 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
     sc.parentNode.replaceChild(c,sc);
   };
 
-  var introOverlay=document.getElementById('pk-intro');
   var dismissed=false;
   function dismissIntro(){
     if(dismissed)return;

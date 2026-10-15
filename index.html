@@ -260,7 +260,7 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
   var pk=document.getElementById('pk');
   function fit(){
     var w=pk.parentNode.clientWidth,h=pk.parentNode.clientHeight;
-    pk.style.setProperty('--scale',Math.min(w/1920,h/1080));
+    pk.style.setProperty('--scale',Math.max(w/1920,h/1080));
   }
   fit();addEventListener('resize',fit);
   function start(){

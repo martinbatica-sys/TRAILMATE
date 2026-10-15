@@ -92,10 +92,12 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 .pk-wa-modal__icon svg{width:36px;height:36px;fill:var(--pirka-bone)}
 
 #pk-intro{position:fixed;inset:0;z-index:300;background:#131110;cursor:pointer}
+#pk-intro__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#pk-intro__scrim{position:absolute;inset:0;background:var(--pirka-scrim-strong)}
 .pk{--T:.9s}
 .pk-shake{position:absolute;inset:0;animation:pk-shake .42s linear var(--T) both}
 .pk-drop{position:absolute;left:0;right:0;bottom:416px;text-align:center;animation:pk-fall .6s cubic-bezier(.5,0,1,.5) .3s both}
-.pk-wm{display:inline-block;margin:0;font-family:"Source Sans 3","Source Sans Pro",system-ui,sans-serif;font-weight:200;font-size:260px;line-height:1;letter-spacing:-0.01em;color:#faf7f2;transform-origin:50% 100%;animation:pk-land .6s ease-out var(--T) both}
+.pk-wm{display:inline-block;margin:0;font-family:"Source Sans 3","Source Sans Pro",system-ui,sans-serif;font-weight:200;font-size:calc(clamp(90px,24vw,200px) / var(--scale,1));line-height:1;letter-spacing:-0.01em;color:#faf7f2;transform-origin:50% 100%;animation:pk-land .6s ease-out var(--T) both}
 .pk-ka{font-family:"Source Serif 4","Source Serif Pro",Georgia,serif;font-style:italic;font-weight:500;font-size:1.12em}
 .pk-ground{position:absolute;top:620px;left:50%;width:1240px;height:0;border-top:1px dashed rgba(250,247,242,.45);transform:translateX(-50%);animation:pk-line .9s cubic-bezier(.2,.8,.2,1) var(--T) both}
 .pk-fx{position:absolute;left:0;top:0;width:1920px;height:621px;overflow:hidden;pointer-events:none}
@@ -114,7 +116,7 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 .ry{position:absolute;left:0;top:0;animation:pk-ry var(--d) linear var(--T) both}
 .rk{position:absolute;left:0;top:0;width:var(--s);height:var(--s);margin:calc(var(--s) * -1) 0 0 calc(var(--s) / -2);background:#6d6255;clip-path:polygon(12% 30%,45% 4%,88% 18%,100% 62%,70% 96%,22% 90%,0 60%);opacity:0;animation:pk-rk var(--d) linear var(--T) both}
 .rk.f{background:#9b8c7a;border-radius:40%;clip-path:none}
-.pk-tag{position:absolute;top:704px;left:0;right:0;text-align:center;margin:0;font-family:"Source Code Pro",ui-monospace,Menlo,monospace;font-size:22px;line-height:1;letter-spacing:.12em;word-spacing:1.6em;text-transform:uppercase;color:#faf7f2;animation:pk-rise 1.2s ease-out 3.6s both}
+.pk-tag{position:absolute;top:704px;left:0;right:0;text-align:center;margin:0;font-family:"Source Code Pro",ui-monospace,Menlo,monospace;font-size:calc(clamp(14px,1.6vw,20px) / var(--scale,1));line-height:1;letter-spacing:.14em;text-transform:uppercase;color:#faf7f2;animation:pk-rise 1.2s ease-out 3.6s both}
 @keyframes pk-fall{0%{transform:translateY(-1050px)}100%{transform:translateY(0)}}
 @keyframes pk-land{0%{transform:scale(1.05,.9)}30%{transform:translateY(-10px) scale(.99,1.02)}60%{transform:translateY(0) scale(1.005,.995)}100%{transform:none}}
 @keyframes pk-shake{0%{transform:none}12%{transform:translate(-6px,7px)}30%{transform:translate(5px,-4px)}50%{transform:translate(-3px,3px)}70%{transform:translate(2px,-1px)}100%{transform:none}}
@@ -127,13 +129,15 @@ nav.scrolled{background:rgba(19,17,16,.94);border-bottom-color:var(--pirka-hairl
 @keyframes pk-rk{0%{opacity:0;transform:rotate(0)}4%{opacity:1}85%{opacity:1}100%{opacity:0;transform:rotate(var(--r))}}
 @keyframes pk-rise{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
 @media (prefers-reduced-motion: reduce){.pk *{animation:none !important}}
-.pk-wrap{position:relative;width:100%;height:100vh;height:100svh;overflow:hidden;background:#131110}
-.pk{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;background:#131110;transform-origin:50% 50%;transform:translate(-50%,-50%) scale(var(--scale,1))}
+.pk-wrap{position:relative;width:100%;height:100vh;height:100svh;overflow:hidden;background:transparent}
+.pk{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;background:transparent;transform-origin:50% 50%;transform:translate(-50%,-50%) scale(var(--scale,1))}
 </style>
 </head>
 <body>
 
 <div id="pk-intro" aria-label="Cerrar intro">
+<img id="pk-intro__bg" src="assets/pirka-bg-portada.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+<div id="pk-intro__scrim"></div>
 <div class="pk-wrap">
 <div class="pk" id="pk">
 <svg width="0" height="0" aria-hidden="true" style="position: absolute">
